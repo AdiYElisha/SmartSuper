@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.Entity;
+using SmartSuper.Models;
+using System.Data.Entity.ModelConfiguration.Conventions;
+
+namespace SmartSuper.DAL
+{
+    public class SmartSuperContext : DbContext
+    {
+        public SmartSuperContext() : base("SmartSuperContext")
+        { }
+
+        public DbSet<FoodCompany> FoodCompanies { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        //public DbSet<Product> Products { get; set; }
+        //public DbSet<ProductType> ProductTypes { get; set; }
+        //public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<Super> Supers { get; set; }
+
+
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder) // Tables name in RABIM 
+        //{
+        //			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        //	}
+    }
+}
