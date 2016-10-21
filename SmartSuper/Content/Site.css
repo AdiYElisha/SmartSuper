@@ -1,4 +1,17 @@
-﻿body {
+﻿@font-face {
+    font-family: myFont;
+    src: url(fonts/YehudaCLM-Bold.woff);
+}
+
+* {
+    font-family: myFont;
+}
+
+header, footer, section, aside, nav, article {
+	display: block;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -21,4 +34,207 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/* login */
+#login
+{
+    font-size: 1.3em;
+    font-weight: 600;
+    display: block;
+    margin: 10px;
+    text-align: left;
+    float: left;
+    padding: 0;
+}
+
+#login li {
+        display: inline;
+        list-style: none;
+        padding-right: 15px;
+        color: #FAFAFA;
+    }
+
+#login a{
+        background: none;
+        color: #E8E8E8;
+        text-decoration: none;
+    }
+
+
+#detLink, #logoutLink, #registerLink, #loginLink {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+     transition: all 0.3s;
+}
+
+#detLink:hover, #logoutLink:hover, #registerLink:hover, #loginLink:hover {
+    color:#ffc90e;
+}
+
+/* login page */
+    #loginForm .validation-error {
+        display: block;
+        margin-left: 15px;
+    }
+
+    #loginForm .validation-summary-errors ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    #loginForm .validation-summary-errors li {
+        display: inline;
+        list-style: none;
+        margin: 0;
+    }
+
+    #loginForm input {
+        width: 250px;
+    }
+
+        #loginForm input[type="checkbox"],
+        #loginForm input[type="submit"],
+        #loginForm input[type="button"],
+        #loginForm button {
+            width: auto;
+        }
+
+/* navigation menu */
+ul#menu {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 10px;
+    padding: 0;
+    text-align: right;
+}
+
+ul#menu li {
+        display: inline;
+        list-style: none;
+        padding-left: 15px;
+    }
+
+    ul#menu li a {
+                background: none;
+                color: #E8E8E8;
+                text-decoration: none;
+            }
+
+ul#menu li a{
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+     transition: all 0.3s;
+}
+
+
+ul#menu li a:hover {
+    color:#ffc90e;
+}
+
+.userName 
+{
+    color:#ffc90e;
+    font-size:small;
+}
+
+/* album views */
+.addToCart {
+    background-color: #E8E8E8;
+    color: black;
+    font-weight: bold;
+}
+
+.inCart {
+    background-color: #535353;
+    color: white;
+    font-weight: bold;
+    cursor: auto;
+}
+
+.album-cell {
+    float: right;
+    padding: 15px;
+}
+
+/* table */
+.tableH
+{
+    direction: rtl;
+    text-align: right
+}
+
+/* aside */
+#content {
+	display: table;
+}
+
+#albums-main {
+		display: table-cell;
+	}
+
+aside{
+    display: table-cell;
+    width: 130px;
+    background: -webkit-linear-gradient(left, #f0f0f0, #f0f0f0); 
+	background: -o-linear-gradient(right, #f0f0f0, #f0f0f0); 
+	background: -moz-linear-gradient(right, #f0f0f0, #f0f0f0); 
+	background: -linear-gradient(to right, #f0f0f0, #f0f0f0);
+
+    position:absolute;
+    left:10px;
+    top:250px;
+}
+
+aside section {
+	padding: 11px 22px;
+
+	background: -webkit-linear-gradient(#e3e3e3, #f0f0f0); 
+    background: -o-linear-gradient(#e3e3e3, #f0f0f0); 
+    background: -moz-linear-gradient(#e3e3e3, #f0f0f0); 
+    background: linear-gradient(#e3e3e3, #f0f0f0);
+	
+	/* Border-radius not implemented yet */
+	-moz-border-radius: 11px;
+	-webkit-border-radius: 11px;
+}
+
+/* footer */
+#copyRights {
+    text-shadow: 2px 2px 20px black;
+}
+
+/* forms */
+fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* home */
+#songsLyrics {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3; /* Firefox */
+    column-count: 3;
+}
+
+#about, #contact {
+    border: 2px solid #a1a1a1;
+    padding: 10px 40px;
+    background: #e3e3e3;
+    width: 600px;
+    border-radius: 25px;
+}
+
+/* canvas */
+#welcome-canvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    left: 0;
+    right: 0;
 }
