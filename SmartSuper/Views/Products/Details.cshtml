@@ -1,0 +1,83 @@
+﻿@model SmartSuper.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductType_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductType_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoodCompany_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoodCompany_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_For_100_Gram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_For_100_Gram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deal_Bool)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deal_Bool)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price_For_100_Gram_In_Deal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price_For_100_Gram_In_Deal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Condition_For_Deal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Condition_For_Deal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount_Condition_For_Deal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount_Condition_For_Deal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
