@@ -20,6 +20,8 @@ namespace SmartSuper.DAL
         //public DbSet<ShoppingCart> ShoppingCarts { get; set; }
         public DbSet<Super> Supers { get; set; }
 
+        public System.Data.Entity.DbSet<SmartSuper.Models.Product> Products { get; set; }
+
 
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder) // Tables name in RABIM 
