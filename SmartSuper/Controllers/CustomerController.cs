@@ -16,6 +16,7 @@ namespace SmartSuper.Controllers
         public ActionResult Index()
         {
             //Hello Kobi
+
             return View(db.Customer.ToList());
         }
 
