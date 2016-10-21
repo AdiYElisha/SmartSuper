@@ -28,7 +28,7 @@ namespace SmartSuper.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -47,7 +47,7 @@ namespace SmartSuper.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,ProductType_ID,FoodCompany_ID,Weight,Price_For_100_Gram,Deal_Bool,Price_For_100_Gram_In_Deal,Condition_For_Deal,Amount_Condition_For_Deal")] Product product)
+        public ActionResult Create([Bind(Include = "ID,ProductType_ID,FoodCompany_ID,Weight,Price_For_100_Gram,Deal_Bool,Price_For_100_Gram_In_Deal,Condition_For_Deal,Amount_Condition_For_Deal")] Products product)
         {
             if (ModelState.IsValid)
             {
@@ -66,7 +66,7 @@ namespace SmartSuper.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -79,7 +79,7 @@ namespace SmartSuper.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,ProductType_ID,FoodCompany_ID,Weight,Price_For_100_Gram,Deal_Bool,Price_For_100_Gram_In_Deal,Condition_For_Deal,Amount_Condition_For_Deal")] Product product)
+        public ActionResult Edit([Bind(Include = "ID,ProductType_ID,FoodCompany_ID,Weight,Price_For_100_Gram,Deal_Bool,Price_For_100_Gram_In_Deal,Condition_For_Deal,Amount_Condition_For_Deal")] Products product)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +97,7 @@ namespace SmartSuper.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -110,7 +110,7 @@ namespace SmartSuper.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Product product = db.Products.Find(id);
+            Products product = db.Products.Find(id);
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");

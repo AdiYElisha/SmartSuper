@@ -66,7 +66,7 @@ namespace SmartSuper.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Customer customer)
+        public ActionResult Edit(Customers customer)
         {
             return View();
         }

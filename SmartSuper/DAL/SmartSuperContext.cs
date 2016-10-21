@@ -14,13 +14,13 @@ namespace SmartSuper.DAL
         { }
 
         public DbSet<FoodCompany> FoodCompanies { get; set; }
-        public DbSet<Customer> Customer { get; set; }
-        //public DbSet<Product> Products { get; set; }
+        public DbSet<Customers> Customer { get; set; }
+        public DbSet<Products> Products { get; set; }
         //public DbSet<ProductType> ProductTypes { get; set; }
         //public DbSet<ShoppingCart> ShoppingCarts { get; set; }
-        public DbSet<Super> Supers { get; set; }
+        public DbSet<Supers> Supers { get; set; }
 
-        public System.Data.Entity.DbSet<SmartSuper.Models.Product> Products { get; set; }
+        //public System.Data.Entity.DbSet<SmartSuper.Models.Product> Products { get; set; }
 
 
 
