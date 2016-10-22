@@ -200,6 +200,7 @@
     <Compile Include="Controllers\FoodCompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductKindsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="DAL\SmartSuperContext.cs" />
@@ -211,7 +212,7 @@
     <Compile Include="Models\FoodCompanies.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\ProductKind.cs" />
+    <Compile Include="Models\ProductKinds.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\ProductTypes.cs" />
     <Compile Include="Models\Product_Super.cs" />
@@ -341,6 +342,8 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\ProductKinds\Details.cshtml" />
+    <Content Include="Views\ProductKinds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

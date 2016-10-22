@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SmartSuper.Models
 {
-    public class ProductKind
+    public class ProductKinds
     {
         public int ID { get; set; }
 
