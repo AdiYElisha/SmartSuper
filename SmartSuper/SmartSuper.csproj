@@ -208,12 +208,15 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customers.cs" />
-    <Compile Include="Models\FoodCompany.cs" />
+    <Compile Include="Models\FoodCompanies.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductKind.cs" />
     <Compile Include="Models\Products.cs" />
-    <Compile Include="Models\ProductType.cs" />
-    <Compile Include="Models\ShoppingCart.cs" />
+    <Compile Include="Models\ProductTypes.cs" />
+    <Compile Include="Models\Product_Super.cs" />
+    <Compile Include="Models\ShoppingCarts.cs" />
+    <Compile Include="Models\ShoppingCart_Product.cs" />
     <Compile Include="Models\Supers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -225,6 +228,53 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\themes\accordion.css" />
+    <Content Include="Content\themes\all.css" />
+    <Content Include="Content\themes\autocomplete.css" />
+    <Content Include="Content\themes\base.css" />
+    <Content Include="Content\themes\button.css" />
+    <Content Include="Content\themes\core.css" />
+    <Content Include="Content\themes\datepicker.css" />
+    <Content Include="Content\themes\dialog.css" />
+    <Content Include="Content\themes\draggable.css" />
+    <Content Include="Content\themes\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\jquery.ui.all.css" />
+    <Content Include="Content\themes\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\jquery.ui.base.css" />
+    <Content Include="Content\themes\jquery.ui.button.css" />
+    <Content Include="Content\themes\jquery.ui.core.css" />
+    <Content Include="Content\themes\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\jquery.ui.slider.css" />
+    <Content Include="Content\themes\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\jquery.ui.theme.css" />
+    <Content Include="Content\themes\menu.css" />
+    <Content Include="Content\themes\progressbar.css" />
+    <Content Include="Content\themes\resizable.css" />
+    <Content Include="Content\themes\selectable.css" />
+    <Content Include="Content\themes\selectmenu.css" />
+    <Content Include="Content\themes\slider.css" />
+    <Content Include="Content\themes\sortable.css" />
+    <Content Include="Content\themes\spinner.css" />
+    <Content Include="Content\themes\tabs.css" />
+    <Content Include="Content\themes\theme.css" />
+    <Content Include="Content\themes\tooltip.css" />
+    <Content Include="Content\themes\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\ui-icons_cd0a0a_256x240.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -292,9 +342,7 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\themes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

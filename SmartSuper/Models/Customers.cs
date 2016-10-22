@@ -53,7 +53,7 @@ namespace SmartSuper.Models
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
-        public virtual ICollection<ShoppingCart> Orders { get; set; }
+        public virtual ICollection<ShoppingCarts> Orders { get; set; }
 
         [Display(Name = "מספר זיהוי של העגלה הנוכחית")]
         [Required(ErrorMessage = "שדה חובה")]

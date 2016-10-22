@@ -17,7 +17,7 @@ namespace SmartSuper.Controllers
         {
             //Hello Kobi
 
-            return View(db.Customer.ToList());
+            return View(db.Customers.ToList());
         }
 
      //   public ActionResult Index(string FirstName, string LastName, int Age, string City, string Gender)
