@@ -1,0 +1,65 @@
+﻿@model SmartSuper.Models.Supers
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>מחיקת רשת</h2>
+
+<h3>האם אתה בטוח שברצונך למחוק את הרשת הבאה?</h3>
+<div>
+    <fieldset style="margin-left:150px">
+        <div>
+            <hr />
+            <div class="dl-horizontal" style="float:right">
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Name):</label>
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.City):</label>
+                    @Html.DisplayFor(model => model.City)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Street):</label>
+                    @Html.DisplayFor(model => model.Street)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.HouseNumber):</label>
+                    @Html.DisplayFor(model => model.HouseNumber)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.CoordX):</label>
+                    @Html.DisplayFor(model => model.CoordX)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.CoordY):</label>
+                    @Html.DisplayFor(model => model.CoordY)
+                </div>
+
+                <div>
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <label style="font-weight:bold">@Html.DisplayNameFor(model => model.PhoneNumber):</label>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    }
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="מחיקה" class="btn btn-default" /> |
+            @Html.ActionLink("חזור", "Index")
+        </div>
+    }
+</div>

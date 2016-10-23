@@ -1,4 +1,4 @@
-﻿@model SmartSuper.Models.Customer
+﻿@model SmartSuper.Models.Customers
 
 @{
     ViewBag.Title = "Create";
@@ -6,11 +6,11 @@
 
 <h2>הרשמה</h2>
 
-@using (Html.BeginForm("Create", "Customers", FormMethod.Post))
+@using (Html.BeginForm("Create", "Customer", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
+
     <div class="form-group">
         @Html.LabelFor(model => model.FirstName)
         <div class="col-md-10">
@@ -38,8 +38,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Gender)
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.Gender, 
-                                  new List<SelectListItem> { 
+            @Html.DropDownListFor(model => model.Gender,
+                                  new List<SelectListItem> {
                                       new SelectListItem { Value = "זכר" , Text = "זכר" },
                                       new SelectListItem { Value = "נקבה" , Text = "נקבה" }})
             @Html.ValidationMessageFor(model => model.Gender)

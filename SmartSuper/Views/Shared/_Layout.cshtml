@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MusicWorld</title>
+    <title>@ViewBag.Title - SmartSuper </title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/themes/base/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -30,10 +30,10 @@
                     <ul id="menu">
                         <li>@Html.ActionLink("דף הבית", "Index", "Home")</li>
                         <li>@Html.ActionLink("אלבומים", "Index", "Albums")</li>
-                        <li>@Html.ActionLink("סניפים", "Index", "Branch")</li>
+                        <li>@Html.ActionLink("רשתות השיווק", "Index", "Supers")</li>
                         @if (sessionUser != null && sessionUser.FirstName == "admin")
                         {
-                            <li>@Html.ActionLink("לקוחות", "Index", "Customers")</li>
+                            <li>@Html.ActionLink("לקוחות", "Index", "Customer")</li>
                         }
                         @if (sessionUser != null && sessionUser.FirstName == "admin")
                         {

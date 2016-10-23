@@ -1,22 +1,23 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+﻿@{
+    var sessionVar = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];
+}
+@if (sessionVar != null)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    <li>@Html.ActionLink("החשבון שלי", "Details", "Customer", new { id = sessionVar.ID }, htmlAttributes: new { id = "detLink" })</li>
+    <li>@Html.ActionLink("התנתק", "Logoff", "Customer", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
+    if (sessionVar.FirstName != "admin")
     {
-    @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+        <label class="userName">שלום, @sessionVar.FirstName</label>
+    }
+    else
+    {
+        <label class="userName">שלום, מנהל המערכת</label>
     }
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("רישום", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("התחברות", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    <ul>
+        <li>@Html.ActionLink("רישום", "Create", "Customer", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("התחברות", "Login", "Customer", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

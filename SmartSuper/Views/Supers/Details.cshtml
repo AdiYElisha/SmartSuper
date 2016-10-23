@@ -1,0 +1,65 @@
+﻿@model SmartSuper.Models.Supers
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>פרטי רשת</h2>
+
+@{var user = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];}
+
+<fieldset style="margin-left:150px">
+    <div>
+        <hr />
+        <div class="dl-horizontal" style="float:right">
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Name):</label>
+                @Html.DisplayFor(model => model.Name)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.City):</label>
+                @Html.DisplayFor(model => model.City)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Street):</label>
+                @Html.DisplayFor(model => model.Street)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.HouseNumber):</label>
+                @Html.DisplayFor(model => model.HouseNumber)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.CoordX):</label>
+                @Html.DisplayFor(model => model.CoordX)
+            </div>
+
+            <div>
+                <label style="font-weight:bold">@Html.DisplayNameFor(model => model.CoordY):</label>
+                @Html.DisplayFor(model => model.CoordY)
+            </div>
+
+            <div>
+                @if (Model.PhoneNumber != null)
+                {
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.PhoneNumber):</label>
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                }
+            </div>
+        </div>
+    </div>
+</fieldset>
+<p>
+    @if (user != null && user.FirstName == "admin")
+    {
+        @Html.ActionLink("ערוך", "Edit", new { id = Model.ID }) <text>|</text>
+
+     //   @Html.ActionLink("הזמנות מסניף זה", "OrdersByBranch", "Orders", new { id = Model.ID }, null) <text>|</text>
+     //   @Html.ActionLink("לקוחות בסניף זה", "CustomersByBranch", "Customers", new { id = Model.ID }, null) <text>|</text>
+
+    }
+    @Html.ActionLink("חזור", "Index")
+</p>

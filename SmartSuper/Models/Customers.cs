@@ -55,10 +55,5 @@ namespace SmartSuper.Models
 
         public virtual ICollection<ShoppingCarts> Orders { get; set; }
 
-        [Display(Name = "מספר זיהוי של העגלה הנוכחית")]
-        [Required(ErrorMessage = "שדה חובה")]
-        public string Current_ShoppingCart_ID { get; set; }
-
-
     }
 }

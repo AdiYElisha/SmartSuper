@@ -1,0 +1,118 @@
+﻿@model SmartSuper.Models.Customers
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>עריכת פרטי החשבון</h2>
+
+@{var user = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset style="margin-left:150px">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Email)
+
+        <div class="form-group">
+            @Html.Label("כתובת מייל")
+            <div class="col-md-10">
+                @Model.Email
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName)
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName)
+                @Html.ValidationMessageFor(model => model.LastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthDate)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BirthDate)
+                @Html.ValidationMessageFor(model => model.BirthDate)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Gender)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Age)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Age)
+                @Html.ValidationMessageFor(model => model.Age)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Street)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Street)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhoneNumber)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="שמור" /><span class="error">@ViewBag.MyMessageToUsers</span>
+            </div>
+        </div>
+    </fieldset>
+}
+
+@if (user != null && user.FirstName == "admin")
+{
+    <div>
+        @Html.ActionLink("חזור", "Index")
+    </div>
+}
+else
+{
+    <div>
+        @Html.ActionLink("פרטי לקוח", "Details", new { id = Model.ID})
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

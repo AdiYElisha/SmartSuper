@@ -1,0 +1,83 @@
+﻿@model SmartSuper.Models.Customers
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>מחיקת לקוח</h2>
+
+<h3>האם אתה בטוח שברצונך למחוק את המשתמש הבא?</h3>
+<div>
+    <fieldset style="margin-left:150px">
+        <div>
+            <hr />
+            <div class="dl-horizontal" style="float:right">
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.FirstName):</label>
+                    @Html.DisplayFor(model => model.FirstName)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.LastName):</label>
+                    @Html.DisplayFor(model => model.LastName)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.BirthDate):</label>
+                    @Model.BirthDate.ToShortDateString()
+                </div>
+
+                <div>
+                    @if (Model.Gender != null)
+                    {
+                        <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Gender):</label>
+                        @Html.DisplayFor(model => model.Gender)
+                    }
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Email):</label>
+                    @Html.DisplayFor(model => model.Email)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Password):</label>
+                    @Html.DisplayFor(model => model.Password)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Age):</label>
+                    @Html.DisplayFor(model => model.Age)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.City):</label>
+                    @Html.DisplayFor(model => model.City)
+                </div>
+
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Street):</label>
+                    @Html.DisplayFor(model => model.Street)
+                </div>
+
+                <div>
+                    @if (Model.PhoneNumber != null)
+                    {
+                        <label style="font-weight:bold">@Html.DisplayNameFor(model => model.PhoneNumber):</label>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    }
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="מחיקה" class="btn btn-default" /> |
+            @Html.ActionLink("חזור", "Index")
+        </div>
+    }
+</div>

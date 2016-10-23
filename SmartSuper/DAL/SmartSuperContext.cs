@@ -10,11 +10,11 @@ namespace SmartSuper.DAL
 {
     public class SmartSuperContext : DbContext
     {
-        public SmartSuperContext() : base("SmartSuperContext3")
+        public SmartSuperContext() : base("SmartSuperContext5")
         { }
 
         public DbSet<FoodCompanies> FoodCompanies { get; set; }
-        public DbSet<Customers> Customers { get; set; }
+        public DbSet<Customers> Customer { get; set; }
         public DbSet<Products> Products { get; set; }
         //public DbSet<ProductType> ProductTypes { get; set; }
         //public DbSet<ShoppingCart> ShoppingCarts { get; set; }
@@ -26,9 +26,9 @@ namespace SmartSuper.DAL
 
 
 
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder) // Tables name in RABIM 
-        //{
-        //			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-        //	}
+        protected override void OnModelCreating(DbModelBuilder modelBuilder) // Tables name in RABIM 
+        { 
+        			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+        }
     }
 }

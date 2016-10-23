@@ -1,0 +1,143 @@
+﻿@model IEnumerable<SmartSuper.Models.Supers>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>רשתות השיווק בינהן מתבצעת ההשוואה</h2>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#SuperName').autocomplete({
+            source: '@Url.Action("GetSuperName")'
+        });
+    });
+
+    $(document).ready(function () {
+        $('#CityName').autocomplete({
+            source: '@Url.Action("GetCityName")'
+        });
+    });
+
+    </script>
+}
+
+@{var user = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];}
+
+@using (Html.BeginForm("Index", "Supers", FormMethod.Post))
+{
+    <label>חיפוש : </label>
+    <div>
+        <label>שם הרשת : </label>
+        <input type="text" name="SuperName" id="SuperName" />
+        <label>עיר : </label>
+        <input type="text" name="City" id="City" />
+        <input type="submit" name="שלח" value="חפש" />
+    </div>
+}
+
+@if (user != null && user.FirstName == "admin")
+{
+    <p>
+        @Html.ActionLink("יצירת רשת חדשה", "Create")
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th class="tableH">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th class="tableH">
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th class="tableH">
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th class="tableH">
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </th>
+        <th class="tableH">
+            @Html.DisplayNameFor(model => model.CoordX)
+        </th>
+        <th class="tableH">
+            @Html.DisplayNameFor(model => model.CoordY)
+        </th>
+        <th class="tableH">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr class="tableRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoordX)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoordY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.ActionLink("פרטי רשת", "Details", new { id = item.ID })
+
+                @if (user != null && user.FirstName == "admin")
+                {
+                    <text>|</text>
+                    @Html.ActionLink("עריכה", "Edit", new { id = item.ID }) <text>|</text>
+                    @Html.ActionLink("מחיקת רשת", "Delete", new { id = item.ID })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAfBFB9_ChDercec2BNZ8T_d1FF0dhMuoA&sensor=true"></script>
+<script type="text/javascript">
+
+    function initialize() {
+        var mapOptions = {
+            center: new google.maps.LatLng(32.0124, 34.7793),
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        @foreach (var item in Model) {
+            <text>
+               addMarker(@item.CoordX, @item.CoordY);
+            </text>
+        }
+
+        function addMarker(x, y) {
+            var location = new google.maps.LatLng(x, y);
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+            });
+        }
+    }
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<div id="map" style="width:500px;height:500px;"></div>

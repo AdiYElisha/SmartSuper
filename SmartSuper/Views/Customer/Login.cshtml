@@ -1,0 +1,41 @@
+﻿@model SmartSuper.Models.Customers
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>התחברות</h2>
+
+<section id="loginForm">
+    <h4>אנא מלא את פרטייך:</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password)
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="התחבר" /><span class="error">@ViewBag.ErrMsg</span>
+        <p>
+            אין לך חשבון? @Html.ActionLink("הירשם", "Create")
+        </p>
+    }
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

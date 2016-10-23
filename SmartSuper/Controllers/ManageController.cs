@@ -301,7 +301,7 @@ namespace SmartSuper.Controllers
 
         //
         // POST: /Manage/LinkLogin
-        [HttpPost]
+     /*   [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
         {
@@ -309,7 +309,7 @@ namespace SmartSuper.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
-        //
+       */
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
