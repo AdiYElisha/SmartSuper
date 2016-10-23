@@ -223,10 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SmartSuperContext.mdf" />
-    <Content Include="App_Data\SmartSuperContext5.mdf" />
-    <Content Include="App_Data\SmartSuperContext5_log.ldf">
-      <DependentUpon>SmartSuperContext5.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\SmartSuperContext_log.ldf">
       <DependentUpon>SmartSuperContext.mdf</DependentUpon>
     </Content>
