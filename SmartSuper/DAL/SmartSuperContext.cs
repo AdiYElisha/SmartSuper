@@ -30,5 +30,7 @@ namespace SmartSuper.DAL
         { 
         			modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<SmartSuper.Models.ProductTypes> ProductTypes { get; set; }
     }
 }
