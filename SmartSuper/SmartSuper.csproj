@@ -204,7 +204,7 @@
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\SupersController.cs" />
-    <Compile Include="DAL\SmartSuperContext.cs" />
+    <Compile Include="DAL\SmartSuperContext5.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

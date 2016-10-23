@@ -8,9 +8,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace SmartSuper.DAL
 {
-    public class SmartSuperContext : DbContext
+    public class SmartSuperContext5 : DbContext
     {
-        public SmartSuperContext() : base("SmartSuperContext5")
+        public SmartSuperContext5() : base("SmartSuperContext5")
         { }
 
         public DbSet<FoodCompanies> FoodCompanies { get; set; }

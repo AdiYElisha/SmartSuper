@@ -13,7 +13,7 @@ namespace SmartSuper.Controllers
 {
     public class CustomerController : Controller
     {
-        private SmartSuperContext db = new SmartSuperContext();
+        private SmartSuperContext5 db = new SmartSuperContext5();
 
         // GET: Customer
         public ActionResult Index()
