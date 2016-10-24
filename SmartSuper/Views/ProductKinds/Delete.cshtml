@@ -1,0 +1,34 @@
+﻿@model SmartSuper.Models.ProductKinds
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>מחיקת סוג מוצר</h2>
+
+<h3>האם אתה בטוח שברצונך למחוק את סוג המוצר הבא?</h3>
+<div>
+    <fieldset style="margin-left:150px">
+        <div>
+            <hr />
+            <div class="dl-horizontal" style="float:right">
+                <div>
+                    <label style="font-weight:bold">@Html.DisplayNameFor(model => model.Name):</label>
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+
+            <img src="@Model.PictuerLocation" style="width:360px;height:300px; float:left;" align="left" />
+
+        </div>
+    </fieldset>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="מחיקה" class="btn btn-default" /> |
+            @Html.ActionLink("חזור", "Index")
+        </div>
+    }
+</div>
