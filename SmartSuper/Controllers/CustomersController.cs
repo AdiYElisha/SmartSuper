@@ -98,8 +98,28 @@ namespace SmartSuper.Controllers
                 }
                 else
                 {
+                    // Creating a new shopping cart
+                    ShoppingCarts Customer_New_Shopping_Cart = new ShoppingCarts();
+                    db.ShoppingCarts.Add(Customer_New_Shopping_Cart);
+                    db.SaveChanges();
+                    int Current_ShoppingCard_ID = db.ShoppingCarts
+                                                         .OrderByDescending(p => p.ID)
+                                                         .FirstOrDefault().ID;
+                    // Adding the Customer
+                    customer.Current_Shoppingcart_ID = Current_ShoppingCard_ID;
                     db.Customer.Add(customer);
                     db.SaveChanges();
+                    
+                    // Adding the row to Customer_ShoppingCart
+                    int Current_Customer_ID = db.Customer
+                                                .OrderByDescending(p => p.ID)
+                                                .FirstOrDefault().ID;
+                    Customer_ShoppingCart newCustShopCart = new Customer_ShoppingCart();
+                    newCustShopCart.Customer_ID = Current_Customer_ID;
+                    newCustShopCart.ShoppingCart_ID = Current_ShoppingCard_ID;
+                    db.Customer_ShoppingCart.Add(newCustShopCart);
+                    db.SaveChanges();
+                    
                     System.Web.HttpContext.Current.Session["user"] = customer;
                     return RedirectToAction("Index", "Home");
                 }
