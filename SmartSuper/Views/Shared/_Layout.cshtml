@@ -29,8 +29,10 @@
                     @{var sessionUser = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];}
                     <ul id="menu">
                         <li>@Html.ActionLink("דף הבית", "Index", "Home")</li>
-                        <li>@Html.ActionLink("אלבומים", "Index", "Albums")</li>
+                        <li>@Html.ActionLink("כל המוצרים", "Index", "Products")</li>
                         <li>@Html.ActionLink("רשתות השיווק", "Index", "Supers")</li>
+                        <li>@Html.ActionLink("סוגי מוצרים", "Index", "ProductKinds")</li>
+                        <li>@Html.ActionLink("מגוון המוצרים", "Index", "ProductTypes")</li>
                         @if (sessionUser != null && sessionUser.FirstName == "admin")
                         {
                             <li>@Html.ActionLink("לקוחות", "Index", "Customer")</li>
@@ -41,9 +43,9 @@
                         }
                         else
                         {
-                            <li>@Html.ActionLink("סל הקניות שלי", "ShoppingCart", "Orders")</li>
+                            <li>@Html.ActionLink("סל הקניות שלי", "ShoppingCart", "index")</li>
                         }
-                        <li>@Html.ActionLink("המצעד השבועי", "TopSong", "Home")</li>
+                        <li>@Html.ActionLink("המבצע השבועי - בבניה", "TopSong", "Home")</li>
                         <li>@Html.ActionLink("אודות", "About", "Home")</li>
                         <li>@Html.ActionLink("צור קשר", "Contact", "Home")</li>
                     </ul>

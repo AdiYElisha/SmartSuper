@@ -28,5 +28,7 @@ namespace SmartSuper.DAL
         }
 
         public System.Data.Entity.DbSet<SmartSuper.Models.ProductTypes> ProductTypes { get; set; }
+
+        public System.Data.Entity.DbSet<SmartSuper.Models.ShoppingCarts> ShoppingCarts { get; set; }
     }
 }
