@@ -53,7 +53,9 @@ namespace SmartSuper.Models
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
-        public virtual ICollection<ShoppingCarts> Orders { get; set; }
+        [Display(Name = "סל קניות נוכחי")]
+        [DataType(DataType.PhoneNumber)]
+        public int Current_Shoppingcart_ID { get; set; }
 
     }
 }

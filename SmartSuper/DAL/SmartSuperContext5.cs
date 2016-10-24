@@ -10,7 +10,7 @@ namespace SmartSuper.DAL
 {
     public class SmartSuperContext5 : DbContext
     {
-        public SmartSuperContext5() : base("SmartSuperContext11")
+        public SmartSuperContext5() : base("SmartSuperContext15")
         { }
 
         public DbSet<FoodCompanies> FoodCompanies { get; set; }
@@ -19,6 +19,7 @@ namespace SmartSuper.DAL
         public DbSet<Supers> Supers { get; set; }
         public DbSet<ShoppingCart_Product> ShoppingCart_Product { get; set; }
         public DbSet<Product_Super> Product_Super { get; set; }
+        public DbSet<Customer_ShoppingCart> Customer_ShoppingCart { get; set; }
 
         public System.Data.Entity.DbSet<SmartSuper.Models.ProductKinds> ProductKinds { get; set; }
 

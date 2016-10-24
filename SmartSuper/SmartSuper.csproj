@@ -205,10 +205,12 @@
     <Compile Include="Controllers\ShoppingCartsController.cs" />
     <Compile Include="Controllers\SupersController.cs" />
     <Compile Include="DAL\SmartSuperContext5.cs" />
+    <Compile Include="DAL\SuperInitial.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Customers.cs" />
+    <Compile Include="Models\Customer_ShoppingCart.cs" />
     <Compile Include="Models\FoodCompanies.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

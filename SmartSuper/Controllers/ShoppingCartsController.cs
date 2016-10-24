@@ -16,6 +16,7 @@ namespace SmartSuper.Controllers
     {
         private SmartSuperContext5 db = new SmartSuperContext5();
 
+
         // GET: ShoppingCarts
         public async Task<ActionResult> Index()
         {
