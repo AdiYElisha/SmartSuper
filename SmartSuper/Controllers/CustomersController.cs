@@ -114,11 +114,11 @@ namespace SmartSuper.Controllers
                     int Current_Customer_ID = db.Customer
                                                 .OrderByDescending(p => p.ID)
                                                 .FirstOrDefault().ID;
-                    Customer_ShoppingCart newCustShopCart = new Customer_ShoppingCart();
-                    newCustShopCart.Customer_ID = Current_Customer_ID;
-                    newCustShopCart.ShoppingCart_ID = Current_ShoppingCard_ID;
-                    db.Customer_ShoppingCart.Add(newCustShopCart);
-                    db.SaveChanges();
+                    //Customer_ShoppingCart newCustShopCart = new Customer_ShoppingCart();
+                    //newCustShopCart.Customer_ID = Current_Customer_ID;
+                    //newCustShopCart.ShoppingCart_ID = Current_ShoppingCard_ID;
+                    //db.Customer_ShoppingCart.Add(newCustShopCart);
+                    //db.SaveChanges();
                     
                     System.Web.HttpContext.Current.Session["user"] = customer;
                     return RedirectToAction("Index", "Home");

@@ -8,6 +8,12 @@ namespace SmartSuper.Models
 {
     public class Customers
     {
+        // The shopping carts of the customer
+        public virtual ICollection<ShoppingCarts> ShoppingCarts { get; set; }
+        public Customers()
+        {
+            ShoppingCarts = new List<ShoppingCarts>();
+        }
         public int ID { get; set; }
 
         [Display(Name = "שם פרטי")]

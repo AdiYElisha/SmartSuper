@@ -9,10 +9,18 @@ namespace SmartSuper.Models
 {
     public class ShoppingCarts
     {
+        public ShoppingCarts()
+        {
+            this.Products = new HashSet<Products>();
+        }
 
         public int ID { get; set; }
         [Display(Name = "האם שולם")]
         [DefaultValue("false")]
         public bool Paid { get; set; }
+
+        public virtual Customers Customer { get; set; }
+        public virtual ICollection<Products> Products { get; set; }
+
     }
 }

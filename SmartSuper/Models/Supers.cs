@@ -8,6 +8,10 @@ namespace SmartSuper.Models
 {
     public class Supers
     {
+        public Supers()
+        {
+            this.Products = new HashSet<Products>();
+        }
         public int ID { get; set; }
 
         [Display(Name = "שם הרשת")]
@@ -36,5 +40,6 @@ namespace SmartSuper.Models
 
         [Display(Name = "מספר טלפון")]
         public string PhoneNumber { get; set; }
+        public virtual ICollection<Products> Products { get; set; }
     }
 }
