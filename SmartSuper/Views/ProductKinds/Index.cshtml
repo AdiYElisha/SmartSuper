@@ -2,33 +2,64 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>סוגי מוצרים</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+@section scripts{
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+         $('#ProductKind').autocomplete({
+             source: '@Url.Action("GetProductKind")'
+         });
+    });
+            
+    </script>
 }
 
-</table>
+@{var user = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];}
+
+@using (Html.BeginForm("Index", "ProductKinds", FormMethod.Post))
+{
+    <label>חיפוש : </label>
+    <div>
+        <label>סוג מוצר : </label>
+        <input type="text" name="ProductKind" id="ProductKind"/>
+        <input type="submit" name="שלח" value="חפש" />
+    </div>
+}
+
+@if (user != null && user.FirstName == "admin")
+{
+    <p>
+        @Html.ActionLink("צור סוג מוצר חדש", "Create")
+    </p>
+}
+
+<div id="content">
+    <div id="albums-main">
+        @foreach (var item in Model)
+        {
+            <section class="album-cell">
+                <div class="album-header" style="text-align:center; font-weight:bold">
+                    <label>@item.Name</label>
+                </div>
+                @Html.ActionLink(" ", "index", "ProductTypes", new { id = @item.ID }, new
+           {
+               style = "background: url('" + item.PictuerLocation + "') no-repeat center right; display:block; height:300px; width:340px;"
+           })
+
+                <div id=@item.ID class="album-details" style="text-align:center; font-weight:bold">
+                    <br />
+                    @if (user != null && user.FirstName == "admin")
+                    {
+                        @Html.ActionLink("ערוך", "Edit", new { id = item.ID }) <text>|</text>
+                        @Html.ActionLink("מחק", "delete", new { id = item.ID })
+                    }
+                </div>
+            </section>
+        }
+    </div>
+</div>

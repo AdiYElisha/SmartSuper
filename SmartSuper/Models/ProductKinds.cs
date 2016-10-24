@@ -13,5 +13,10 @@ namespace SmartSuper.Models
         [Display(Name = "שם סוג המוצר")]
         [Required(ErrorMessage = "שדה חובה")]
         public string Name { get; set; }
+
+        [Display(Name = "תצלום של סוג מוצר")]
+        [Required(ErrorMessage = "שדה חובה")]
+        public string PictuerLocation { get; set; }
+
     }
 }

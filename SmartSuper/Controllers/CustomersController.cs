@@ -214,28 +214,6 @@ namespace SmartSuper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-/*
-        public ActionResult CustomerByBranch(int? id)
-        {
-            if (id == null)
-            { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
-
-            var query = from c in db.Customer
-                        join b in db.Branches on
-                        c.Orders.Select(x => x.Album).Where(y => y.BranchID == id).FirstOrDefault().BranchID equals b.BranchId
-                        where b.BranchId == id
-                        select new BranchCustomerView
-                        {
-                            branchId = b.BranchId,
-                            branchName = b.Name,
-                            branchCity = b.City, 
-                            firstName = c.FirstName, 
-                            lastName = c.LastName, 
-                            birthDate = c.BirthDate
-                        };
-
-            return View(query.ToList().Distinct());
-        }*/
 
         public ActionResult GetFirstName(string term)
         {

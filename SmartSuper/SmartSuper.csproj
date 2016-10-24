@@ -279,7 +279,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Picture\cheecs.jpg" />
+    <Content Include="Picture\fruit.jpg" />
+    <Content Include="Picture\meat.jpg" />
+    <Content Include="Picture\no_picture_to_show.jpg" />
     <Content Include="Picture\productall.png" />
+    <Content Include="Picture\veg.jpg" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -350,6 +355,9 @@
     <Content Include="Views\ShoppingCarts\Details.cshtml" />
     <Content Include="Views\ShoppingCarts\Edit.cshtml" />
     <Content Include="Views\ShoppingCarts\Index.cshtml" />
+    <Content Include="Views\ProductKinds\Create.cshtml" />
+    <Content Include="Views\ProductKinds\Delete.cshtml" />
+    <Content Include="Views\ProductKinds\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

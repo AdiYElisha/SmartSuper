@@ -1,0 +1,42 @@
+﻿@model SmartSuper.Models.ProductKinds
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>צור סוג מוצר חדש</h2>
+
+
+@using (Html.BeginForm("Create", "ProductKinds", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.PictuerLocation)
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.PictuerLocation, new { id = "pic", style = "display:none;" })
+            <input type="file" id="PictuerLocation" name="PictuerLocation" />
+        </div>
+    </div>
+
+    <p>
+        <input type="submit" value="שמור" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink("חזור", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
