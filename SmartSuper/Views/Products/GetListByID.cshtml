@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartSuper.Models.Products>
+﻿@model IEnumerable<SmartSuper.ViewModel.ProductsBySupers>
 
 @{
     ViewBag.Title = "GetListByID";
@@ -58,58 +58,75 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductType_ID)
+            @Html.DisplayNameFor(model => model.ProductName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FoodCompany_ID)
+            @Html.DisplayNameFor(model => model.FoodCompanyName)
         </th>
-        
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </th>
+
         <th></th>
     </tr>
 
-@{var Current_ShppingCart_Products = (List<SmartSuper.ViewModel.ProductsOfShoppingCartsIDs>)System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"];}
+    @{var Current_ShppingCart_Products = (List<SmartSuper.ViewModel.ProductsOfShoppingCartsIDs>)System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"];}
+    @{var Products_By_Prices = (float[])System.Web.HttpContext.Current.Session["Products_By_Prices"]; }
+    @foreach (var item in Model)
+    {
+        if (Products_By_Prices[item.ProductID] == item.Price)
+        {
+            <tr class="tableRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodCompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductID)
+                </td>
+                <td>
+                    @{ bool IsProductIDInsideList = false;}
+                    @{ float lowest_price_for_product_id = 9999;}
+                    <div id=@item.ProductID class="Products-details" style="text-align:center; font-weight:bold">
 
-@foreach (var item in Model)
-{
-    <tr class="tableRow">
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductType_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FoodCompany_ID)
-        </td>
-        <td>
-            @{ bool IsProductIDInsideList = false;}
-            <div id=@item.ID class="Products-details" style="text-align:center; font-weight:bold">
+                        @foreach (SmartSuper.ViewModel.ProductsOfShoppingCartsIDs item2 in Current_ShppingCart_Products)
+                        {
+                            if (item2.ProductsID == item.ProductID)
+                            {
+                                IsProductIDInsideList = true;
+                            }
+                        }
+                        @if (IsProductIDInsideList == true)
 
-                @foreach (SmartSuper.ViewModel.ProductsOfShoppingCartsIDs item2 in Current_ShppingCart_Products)
-                {
-                    if (item2.ProductsID == item.ID)
+                        {
+                            <button type="button" disabled="disabled" class="inCart" id="inCart">נוסף לסל</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="addProductToCart" id="addProductToCart">הוספה לסל</button>
+                        }
+                    </div>
+                </td>
+                <br />
+
+                <td>
+                    @if (user != null && user.FirstName == "admin")
                     {
-                        IsProductIDInsideList = true;
+                        <text>|</text>
+                        @Html.ActionLink("עריכה", "Edit", new { id = item.ProductID }) <text>|</text>
+                        @Html.ActionLink("מחיקת מוצר", "Delete", new { id = item.ProductID })
                     }
-                }
-                @if (IsProductIDInsideList == true)
-                {
-                    <button type="button" disabled="disabled" class="inCart" id="inCart">נוסף לסל</button>
-                }
-                else
-                {
-                    <button type="button" class="addProductToCart" id="addProductToCart">הוספה לסל</button>
-                }
-            </div>
-</td>
-        <br />
-
-        <td>
-            @if (user != null && user.FirstName == "admin")
-            {
-                <text>|</text>
-                @Html.ActionLink("עריכה", "Edit", new { id = item.ID }) <text>|</text>
-                @Html.ActionLink("מחיקת מוצר", "Delete", new { id = item.ID })
-            }
-        </td>
-    </tr>
-}
+                </td>
+            </tr>
+                            }
+                        }
 
 </table>

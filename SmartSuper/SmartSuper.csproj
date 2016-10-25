@@ -221,6 +221,7 @@
     <Compile Include="Models\SupersProducts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ProductsBySupers.cs" />
     <Compile Include="ViewModel\ProductsOfShoppingCartsIDs.cs" />
     <Compile Include="ViewModel\ProductsOfShoppingCarts.cs" />
   </ItemGroup>

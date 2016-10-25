@@ -18,6 +18,7 @@ namespace SmartSuper.DAL
         public DbSet<Products> Products { get; set; }
         public DbSet<Supers> Supers { get; set; }
         public DbSet<ProductsShoppingCarts> ProductsShoppingCarts { get; set; }
+        public DbSet<SupersProducts> SupersProducts { get; set; }
 
         public System.Data.Entity.DbSet<SmartSuper.Models.ProductKinds> ProductKinds { get; set; }
 

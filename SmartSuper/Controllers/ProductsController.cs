@@ -34,16 +34,74 @@ namespace SmartSuper.Controllers
             //var Current_ShppingCart_Products = db.ProductsShoppingCarts.Where(s => s.ShoppingCartsID == Customer_ShoppingCart_ID);
             //System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products;
 
+            var TEST = from products in db.Products
+                       where products.ProductType_ID == ID
+                       group products by products.FoodCompany_ID into result
+                       select result;
 
+
+
+
+
+            // Select Product_ID, ProductType_Name, FoodCompany_Name, LowestPrice from all supers
+            var Products_By_TypeID_By_lowest_Price = from products in db.Products
+                                                     where products.ProductType_ID == ID
+                                                     join producttypes in db.ProductTypes on products.ProductType_ID equals producttypes.ID
+                                                     join foodcompanies in db.FoodCompanies on products.FoodCompany_ID equals foodcompanies.Id
+                                                     join superbyproducts in db.SupersProducts on products.ID equals superbyproducts.ProductsID
+                                                     //group new ProductsBySupers { ProductID = products.ID, ProductName = producttypes.Name, FoodCompanyName = foodcompanies.Name, Price = superbyproducts.Price }
+                                                     //by products.ID into results
+                                                     select new ProductsBySupers { ProductID = products.ID, ProductName = producttypes.Name, FoodCompanyName = foodcompanies.Name, Price = superbyproducts.Price };
+
+            var Products_By_TypeID_By_lowest_Price2 = from products in db.Products
+                                                     where products.ProductType_ID == ID
+                                                     join producttypes in db.ProductTypes on products.ProductType_ID equals producttypes.ID
+                                                     join foodcompanies in db.FoodCompanies on products.FoodCompany_ID equals foodcompanies.Id
+                                                     join superbyproducts in db.SupersProducts on products.ID equals superbyproducts.ProductsID
+                                                     group superbyproducts
+                                                     by products.ID into results
+                                                     select new ProductsBySupers {Price = results.Min(z => z.Price )};
+
+            System.Web.HttpContext.Current.Session["Products_By_Prices2"] = Products_By_TypeID_By_lowest_Price2;
+            float[] products_by_prices = new float[5000];
+
+            foreach (var item in Products_By_TypeID_By_lowest_Price)
+            {
+                if (products_by_prices[item.ProductID] == 0)
+                {
+                    products_by_prices[item.ProductID] = item.Price;
+                }
+                else
+                {
+                    if (products_by_prices[item.ProductID] > item.Price)
+                    {
+                        products_by_prices[item.ProductID] = item.Price;
+                    }
+                }
+            }
+
+            System.Web.HttpContext.Current.Session["Products_By_Prices"] = products_by_prices;
+
+
+
+            // Selects the shoppingCart Products I have to make the button active or deactive
             var Current_ShppingCart_Products = from ProductsShoppingCarts in db.ProductsShoppingCarts
                                                where ProductsShoppingCarts.ShoppingCartsID == Customer_ShoppingCart_ID
                                                select new ProductsOfShoppingCartsIDs { ProductsID = ProductsShoppingCarts.ProductsID };
 
+            //Trying
             System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products.ToList();
 
-            var ProductsVar = from a in db.Products select a;
-            ProductsVar = ProductsVar.Where(x => x.ProductType_ID == ID);
-            return View(ProductsVar.ToList());
+            // Picks the lowest price product
+
+            return View(Products_By_TypeID_By_lowest_Price.ToList());
+
+
+            // trying different approach
+            // Products by the ID of the ProductType ID
+            //var ProductsVar = from a in db.Products select a;
+            //ProductsVar = ProductsVar.Where(x => x.ProductType_ID == ID);
+            //return View(ProductsVar.ToList());
         }
 
         // GET: Products/Details/5

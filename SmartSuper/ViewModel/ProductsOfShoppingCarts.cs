@@ -12,5 +12,6 @@ namespace SmartSuper.ViewModel
         public string ProductName { get; set; }
         [Display(Name = "שם החברה")]
         public string FoodCompanyName { get; set; }
+        //public float Price { get; set; }
     }
 }
