@@ -31,6 +31,7 @@ namespace SmartSuper.Controllers
             //var Products = from a in db.ProductsShoppingCarts join ProductsShoppingCarts select a;
 
             var ProductsNames = from ProductsShoppingCart in db.ProductsShoppingCarts
+                                where ProductsShoppingCart.ShoppingCartsID == Customer_ShoppingCart_ID
                                              join Product in db.Products on ProductsShoppingCart.ProductsID equals Product.ID
                                              join ProductType in db.ProductTypes on Product.ProductType_ID equals ProductType.ID
                                              select new ProductsOfShoppingCarts { ProductName = ProductType.Name };
