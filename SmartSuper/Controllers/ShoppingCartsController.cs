@@ -35,7 +35,7 @@ namespace SmartSuper.Controllers
                                 join Product in db.Products on ProductsShoppingCart.ProductsID equals Product.ID
                                 join ProductType in db.ProductTypes on Product.ProductType_ID equals ProductType.ID
                                 join FoodCompany in db.FoodCompanies on Product.FoodCompany_ID equals FoodCompany.Id
-                                select new ProductsOfShoppingCarts { ProductName = ProductType.Name, FoodCompanyName = FoodCompany.Name };
+                                select new ProductsOfShoppingCarts { ProductName = ProductType.Name , FoodCompanyName = FoodCompany.Name };
                                         
             return View(ProductsNames.ToList());
         }
