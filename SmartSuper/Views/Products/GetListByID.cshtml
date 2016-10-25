@@ -53,6 +53,8 @@
     </div>
 }
 
+
+
 @if (user != null && user.FirstName == "admin")
 {
     <p>
@@ -88,6 +90,8 @@
         </th>
         <th></th>
     </tr>
+
+@{var Current_ShppingCart_Products = (List<SmartSuper.Models.ProductsShoppingCarts>)System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"];}
 
 @foreach (var item in Model)
 {
