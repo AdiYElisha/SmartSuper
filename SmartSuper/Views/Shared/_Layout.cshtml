@@ -32,7 +32,7 @@
                         <li>@Html.ActionLink("כל המוצרים", "Index", "Products")</li>
                         <li>@Html.ActionLink("רשתות השיווק", "Index", "Supers")</li>
                         <li>@Html.ActionLink("סוגי מוצרים", "Index", "ProductKinds")</li>
-                        <li>@Html.ActionLink("מגוון המוצרים", "Index", "ProductTypes")</li>
+           <!--         <li>@Html.ActionLink("מגוון המוצרים", "Index", "ProductTypes")</li>        --> 
                         @if (sessionUser != null && sessionUser.FirstName == "admin")
                         {
                             <li>@Html.ActionLink("לקוחות", "Index", "Customer")</li>
@@ -45,7 +45,7 @@
                         {
                             <li>@Html.ActionLink("סל הקניות שלי", "index", "ShoppingCarts")</li>
                         }
-                        <li>@Html.ActionLink("המבצע השבועי - בבניה", "TopSong", "Home")</li>
+                        <li>@Html.ActionLink("המבצע השבועי", "Top", "Home")</li>
                         <li>@Html.ActionLink("אודות", "About", "Home")</li>
                         <li>@Html.ActionLink("צור קשר", "Contact", "Home")</li>
                     </ul>

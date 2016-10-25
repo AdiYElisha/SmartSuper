@@ -15,32 +15,6 @@ namespace SmartSuper.Controllers
     {
         private SmartSuperContext5 db = new SmartSuperContext5();
 
-        [HttpGet]
-        public ActionResult GetListByID(int? ID)
-        {
-            if (ID == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            var ProductTypeVar = from a in db.ProductTypes select a;
-            ProductTypeVar = ProductTypeVar.Where(x => x.ProductKind_ID == ID);
-            return View(ProductTypeVar.ToList());
-
-            /*
-                        var query = from o in db.ProductKinds
-                                    join b in db.ProductTypes on
-                                    o.ID equals b.ProductKind_ID
-                                    where b.ProductKind_ID == id
-                                    select new
-                                    {
-                                        ProductType = b.Name,
-                                    };
-
-
-                        return View(query.ToList());
-            */
-        }
         // GET: ProductTypes
         public ActionResult Index()
         {
@@ -60,8 +34,32 @@ namespace SmartSuper.Controllers
             return View(ProudctTypeVar.ToList());
         }
 
-        
+        [HttpGet]
+        public ActionResult GetListByID(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
 
+            var ProductTypeVar = from a in db.ProductTypes select a;
+            ProductTypeVar = ProductTypeVar.Where(x => x.ProductKind_ID == ID);
+            return View(ProductTypeVar.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult GetListByID(string ProductType)
+        {
+            var ProudctTypeVar = from a in db.ProductTypes select a;
+
+            if (!string.IsNullOrEmpty(ProductType))
+            {
+                ProudctTypeVar = ProudctTypeVar.Where(x => x.Name == ProductType);
+            }
+
+            return View(ProudctTypeVar.ToList());
+        }
+    
         // GET: ProductTypes/Details/5
         public ActionResult Details(int? id)
         {
