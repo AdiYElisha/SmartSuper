@@ -44,11 +44,6 @@ namespace SmartSuper.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "גיל")]
-        [Required(ErrorMessage = "שדה חובה")]
-        [Range(12, 120, ErrorMessage = "גיל בטווח 12-120 בלבד")]
-        public int Age { get; set; }
-
         [Display(Name = "עיר")]
         public string City { get; set; }
 

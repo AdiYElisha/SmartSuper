@@ -10,7 +10,7 @@ namespace SmartSuper.Models
     {
         public Supers()
         {
-            this.Products = new HashSet<Products>();
+            //this.Products = new HashSet<Products>();
         }
         public int ID { get; set; }
 
@@ -40,6 +40,7 @@ namespace SmartSuper.Models
 
         [Display(Name = "מספר טלפון")]
         public string PhoneNumber { get; set; }
-        public virtual ICollection<Products> Products { get; set; }
+        //public virtual ICollection<Products> Products { get; set; }
+        public virtual ICollection<SupersProducts> SupersProducts { get; set; }
     }
 }
