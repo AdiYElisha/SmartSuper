@@ -351,16 +351,16 @@
     <Content Include="Views\ProductTypes\Details.cshtml" />
     <Content Include="Views\ProductTypes\Edit.cshtml" />
     <Content Include="Views\ProductTypes\Index.cshtml" />
-    <Content Include="Views\ShoppingCarts\Create.cshtml" />
-    <Content Include="Views\ShoppingCarts\Delete.cshtml" />
-    <Content Include="Views\ShoppingCarts\Details.cshtml" />
-    <Content Include="Views\ShoppingCarts\Edit.cshtml" />
-    <Content Include="Views\ShoppingCarts\Index.cshtml" />
     <Content Include="Views\ProductKinds\Create.cshtml" />
     <Content Include="Views\ProductKinds\Delete.cshtml" />
     <Content Include="Views\ProductKinds\Edit.cshtml" />
     <Content Include="Views\ProductTypes\GetListByID.cshtml" />
     <Content Include="Views\Products\GetListByID.cshtml" />
+    <Content Include="Views\ShoppingCarts\Create.cshtml" />
+    <Content Include="Views\ShoppingCarts\Delete.cshtml" />
+    <Content Include="Views\ShoppingCarts\Details.cshtml" />
+    <Content Include="Views\ShoppingCarts\Edit.cshtml" />
+    <Content Include="Views\ShoppingCarts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

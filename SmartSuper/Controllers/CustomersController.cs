@@ -111,9 +111,9 @@ namespace SmartSuper.Controllers
                     db.SaveChanges();
                     
                     // Adding the row to Customer_ShoppingCart
-                    int Current_Customer_ID = db.Customer
-                                                .OrderByDescending(p => p.ID)
-                                                .FirstOrDefault().ID;
+                    //int Current_Customer_ID = db.Customer
+                                                //.OrderByDescending(p => p.ID)
+                                                //.FirstOrDefault().ID;
                     //Customer_ShoppingCart newCustShopCart = new Customer_ShoppingCart();
                     //newCustShopCart.Customer_ID = Current_Customer_ID;
                     //newCustShopCart.ShoppingCart_ID = Current_ShoppingCard_ID;

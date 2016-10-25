@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -16,21 +15,28 @@ namespace SmartSuper.Controllers
     {
         private SmartSuperContext5 db = new SmartSuperContext5();
 
-
         // GET: ShoppingCarts
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.ShoppingCarts.ToListAsync());
+            if (System.Web.HttpContext.Current.Session["user"] != null)
+            {
+                int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+
+                var ProductsShoppingCarts = from a in db.ProductsShoppingCarts select a;
+                ProductsShoppingCarts = ProductsShoppingCarts.Where(x => x.ShoppingCartsID == Customer_ShoppingCart_ID);
+                return View(ProductsShoppingCarts.ToList());
+            }
+            return View(db.ProductsShoppingCarts.ToList()); ;
         }
 
         // GET: ShoppingCarts/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShoppingCarts shoppingCarts = await db.ShoppingCarts.FindAsync(id);
+            ShoppingCarts shoppingCarts = db.ShoppingCarts.Find(id);
             if (shoppingCarts == null)
             {
                 return HttpNotFound();
@@ -49,12 +55,12 @@ namespace SmartSuper.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Paid")] ShoppingCarts shoppingCarts)
+        public ActionResult Create([Bind(Include = "ID,Paid")] ShoppingCarts shoppingCarts)
         {
             if (ModelState.IsValid)
             {
                 db.ShoppingCarts.Add(shoppingCarts);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -62,13 +68,13 @@ namespace SmartSuper.Controllers
         }
 
         // GET: ShoppingCarts/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShoppingCarts shoppingCarts = await db.ShoppingCarts.FindAsync(id);
+            ShoppingCarts shoppingCarts = db.ShoppingCarts.Find(id);
             if (shoppingCarts == null)
             {
                 return HttpNotFound();
@@ -81,25 +87,25 @@ namespace SmartSuper.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Paid")] ShoppingCarts shoppingCarts)
+        public ActionResult Edit([Bind(Include = "ID,Paid")] ShoppingCarts shoppingCarts)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(shoppingCarts).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(shoppingCarts);
         }
 
         // GET: ShoppingCarts/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShoppingCarts shoppingCarts = await db.ShoppingCarts.FindAsync(id);
+            ShoppingCarts shoppingCarts = db.ShoppingCarts.Find(id);
             if (shoppingCarts == null)
             {
                 return HttpNotFound();
@@ -110,11 +116,11 @@ namespace SmartSuper.Controllers
         // POST: ShoppingCarts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            ShoppingCarts shoppingCarts = await db.ShoppingCarts.FindAsync(id);
+            ShoppingCarts shoppingCarts = db.ShoppingCarts.Find(id);
             db.ShoppingCarts.Remove(shoppingCarts);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
