@@ -10,7 +10,7 @@ namespace SmartSuper.DAL
 {
     public class SmartSuperContext5 : DbContext
     {
-        public SmartSuperContext5() : base("SmartSuperContext16")
+        public SmartSuperContext5() : base("SmartSuperContext17")
         { }
 
         public DbSet<FoodCompanies> FoodCompanies { get; set; }

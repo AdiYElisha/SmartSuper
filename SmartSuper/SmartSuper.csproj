@@ -358,6 +358,7 @@
     <Content Include="Views\ProductKinds\Create.cshtml" />
     <Content Include="Views\ProductKinds\Delete.cshtml" />
     <Content Include="Views\ProductKinds\Edit.cshtml" />
+    <Content Include="Views\ProductTypes\GetListByID.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
