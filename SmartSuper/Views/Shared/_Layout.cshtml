@@ -27,28 +27,32 @@
             <nav>
                 <div class="navbar-collapse collapse">
                     @{var sessionUser = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];}
-                    <ul id="menu">
-                        <li>@Html.ActionLink("דף הבית", "Index", "Home")</li>
-                        <li>@Html.ActionLink("כל המוצרים", "Index", "Products")</li>
-                        <li>@Html.ActionLink("רשתות השיווק", "Index", "Supers")</li>
-                        <li>@Html.ActionLink("סוגי מוצרים", "Index", "ProductKinds")</li>
-           <!--         <li>@Html.ActionLink("מגוון המוצרים", "Index", "ProductTypes")</li>        --> 
-                        @if (sessionUser != null && sessionUser.FirstName == "admin")
-                        {
-                            <li>@Html.ActionLink("לקוחות", "Index", "Customer")</li>
-                        }
-                        @if (sessionUser != null && sessionUser.FirstName == "admin")
-                        {
-                            <li>@Html.ActionLink("הזמנות", "Index", "Orders")</li>
-                        }
-                        else
-                        {
-                            <li>@Html.ActionLink("סל הקניות שלי", "index", "ShoppingCarts")</li>
-                        }
-                        <li>@Html.ActionLink("המבצע השבועי", "Top", "Home")</li>
-                        <li>@Html.ActionLink("אודות", "About", "Home")</li>
-                        <li>@Html.ActionLink("צור קשר", "Contact", "Home")</li>
-                    </ul>
+                    @if (sessionUser != null)
+                    {
+                        <ul id="menu">
+                            <li>@Html.ActionLink("דף הבית", "Index", "Home")</li>
+                            <li>@Html.ActionLink("כל המוצרים", "Index", "Products")</li>
+                            <li>@Html.ActionLink("סוגי מוצרים", "Index", "ProductKinds")</li>
+                            <li>@Html.ActionLink("רשתות השיווק", "Index", "Supers")</li>
+                            <!--         <li>@Html.ActionLink("מגוון המוצרים", "Index", "ProductTypes")</li>        -->
+                            @if (sessionUser != null && sessionUser.FirstName == "admin")
+                            {
+                                <li>@Html.ActionLink("לקוחות", "Index", "Customer")</li>
+                            }
+                            @if (sessionUser != null && sessionUser.FirstName == "admin")
+                            {
+                                <li>@Html.ActionLink("הזמנות", "Index", "Orders")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("סל הקניות שלי", "index", "ShoppingCarts")</li>
+                            }
+                            <li>@Html.ActionLink("הכרות", "Hello", "Home")</li>
+                            <li>@Html.ActionLink("אודות", "About", "Home")</li>
+                            <li>@Html.ActionLink("צור קשר", "Contact", "Home")</li>
+                        </ul>
+                    }
+             
                 </div>
             </nav>
         </div>
