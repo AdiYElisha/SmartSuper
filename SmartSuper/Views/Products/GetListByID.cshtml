@@ -1,17 +1,64 @@
 ﻿@model IEnumerable<SmartSuper.Models.Products>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "GetListByID";
 }
 
-<h2>Index</h2>
+<h2>רשימת המוצרים מסוג המוצר הנבחר</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@section scripts{
 
+    <script type="text/javascript">
 
+        $(document).ready(function () {
+         $('#Product').autocomplete({
+             source: '@Url.Action("GetProduct")'
+         });
+        });
+
+        $(document).ready(function () {
+            $(".addProdrctToCart").click(function () {
+                var button = $(this);
+
+                $.ajax({
+                    url: '/Products/addProdrctToCart',
+                    type: 'Post',
+                    dataType: 'Json',
+                    data: { albumId: $(this).parent().attr("id") },
+                    success: (function (result) {
+
+                        $(button).text("נוסף לסל");
+                        $(button).removeClass("addProdrctToCart");
+                        $(button).addClass("inCart");
+                        $(button).attr("disabled", "disabled");
+                    }),
+                    error: (function (xhr, status) {
+                        alert(status);
+                    })
+                });
+            });
+        });
+
+    </script>
+}
+
+@{var user = (SmartSuper.Models.Customers)HttpContext.Current.Session["user"];}
+
+@using (Html.BeginForm("GetListByID", "Product", FormMethod.Post))
+{
+    <label>חיפוש : </label>
+    <div>
+        <input type="text" name="Product" id="Product" />
+        <input type="submit" name="שלח" value="חפש" />
+    </div>
+}
+
+@if (user != null && user.FirstName == "admin")
+{
+    <p>
+        @Html.ActionLink("יצירת מוצר חדש", "Create")
+    </p>
+}
 
 <table class="table">
     <tr>
@@ -42,8 +89,9 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model)
+{
+    <tr class="tableRow">
         <td>
             @Html.DisplayFor(modelItem => item.ProductType_ID)
         </td>
@@ -69,9 +117,25 @@
             @Html.DisplayFor(modelItem => item.Amount_Condition_For_Deal)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+
+            @if (true)
+            {
+                <button type="button" disabled="disabled" class="inCart" id="inCart">נוסף לסל</button>
+            }
+            else
+            {
+                <button type="button" class="addProdrctToCart" id="addProdrctToCart">הוספה לסל</button>
+            }
+        </td>
+        <br />
+
+        <td>
+            @if (user != null && user.FirstName == "admin")
+            {
+                <text>|</text>
+                @Html.ActionLink("עריכה", "Edit", new { id = item.ID }) <text>|</text>
+                @Html.ActionLink("מחיקת מוצר", "Delete", new { id = item.ID })
+            }
         </td>
     </tr>
 }

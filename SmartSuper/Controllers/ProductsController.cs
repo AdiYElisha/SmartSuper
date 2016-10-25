@@ -121,9 +121,9 @@ namespace SmartSuper.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int Id)
         {
-            Products product = db.Products.Find(id);
+            Products product = db.Products.Find(Id);
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -136,6 +136,28 @@ namespace SmartSuper.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public JsonResult addProdrctToCart(int Id)
+        {
+            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+            ProductsShoppingCarts productShoppingCarts = new ProductsShoppingCarts();
+
+            productShoppingCarts.ProductsID = Id;
+            productShoppingCarts.ShoppingCartsID = Customer_ShoppingCart_ID;
+
+            db.ProductsShoppingCarts.Add(productShoppingCarts);
+            db.SaveChanges();
+            return (null);       
+ 
+        }
+
+        public JsonResult DeleteProductFromCart(int id = 0)
+        {
+            List<int> cart = (List<int>)System.Web.HttpContext.Current.Session["shoppingCart"];
+            cart.Remove(id);
+            return Json(cart.Count);
         }
     }
 }
