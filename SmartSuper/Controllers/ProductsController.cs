@@ -142,10 +142,14 @@ namespace SmartSuper.Controllers
         public JsonResult addProdrctToCart(int Id)
         {
             int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+            var Current_ShppingCart_Products = db.ProductsShoppingCarts.Where(s => s.ShoppingCartsID == Customer_ShoppingCart_ID);
+            System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products;
+
             ProductsShoppingCarts productShoppingCarts = new ProductsShoppingCarts();
 
             productShoppingCarts.ProductsID = Id;
             productShoppingCarts.ShoppingCartsID = Customer_ShoppingCart_ID;
+            //productShoppingCarts.amount
 
             db.ProductsShoppingCarts.Add(productShoppingCarts);
             db.SaveChanges();
