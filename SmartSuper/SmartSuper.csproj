@@ -221,6 +221,7 @@
     <Compile Include="Models\Supers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\ProductsOfShoppingCarts.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\SmartSuperContext11.mdf" />

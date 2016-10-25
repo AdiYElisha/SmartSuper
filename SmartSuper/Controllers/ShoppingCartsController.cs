@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SmartSuper.DAL;
 using SmartSuper.Models;
+using SmartSuper.ViewModel;
 
 namespace SmartSuper.Controllers
 {
@@ -18,15 +19,23 @@ namespace SmartSuper.Controllers
         // GET: ShoppingCarts
         public ActionResult Index()
         {
-            if (System.Web.HttpContext.Current.Session["user"] != null)
-            {
-                int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
 
-                var ProductsShoppingCarts = from a in db.ProductsShoppingCarts select a;
-                ProductsShoppingCarts = ProductsShoppingCarts.Where(x => x.ShoppingCartsID == Customer_ShoppingCart_ID);
-                return View(ProductsShoppingCarts.ToList());
-            }
-            return View(db.ProductsShoppingCarts.ToList()); ;
+            // Selecting all the products in our shopping carts
+
+            //var ProductsShoppingCarts = from a in db.ProductsShoppingCarts select a;
+            //ProductsShoppingCarts = ProductsShoppingCarts.Where(x => x.ShoppingCartsID == Customer_ShoppingCart_ID);
+
+            // Translating all the products_IDs to Products_names
+
+            //var Products = from a in db.ProductsShoppingCarts join ProductsShoppingCarts select a;
+
+            var ProductsNames = from ProductsShoppingCart in db.ProductsShoppingCarts
+                                             join Product in db.Products on ProductsShoppingCart.ProductsID equals Product.ID
+                                             join ProductType in db.ProductTypes on Product.ProductType_ID equals ProductType.ID
+                                             select new ProductsOfShoppingCarts { ProductName = ProductType.Name };
+                                        
+            return View(ProductsNames.ToList());
         }
 
         // GET: ShoppingCarts/Details/5

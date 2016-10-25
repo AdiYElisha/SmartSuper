@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartSuper.Models.ProductsShoppingCarts>
+﻿@model IEnumerable<SmartSuper.ViewModel.ProductsOfShoppingCarts>
 
 @{
     ViewBag.Title = "Index";
@@ -13,7 +13,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductsID)
+            @Html.DisplayNameFor(model => model.ProductName)
         </th>
         <th></th>
     </tr>
@@ -21,10 +21,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ProductsID)
+            @Html.DisplayFor(modelItem => item.ProductName)
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id= item.ProductsID })
+            @Html.ActionLink("Delete", "Delete", new { id= item.ProductName})
         </td>
     </tr>
 }
