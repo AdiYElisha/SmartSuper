@@ -55,7 +55,7 @@ namespace SmartSuper.Controllers
         // GET: ProductKinds/Create
         public ActionResult Create()
         {
-            ViewBag.BranchID = new SelectList(db.ProductKinds, "ID", "Name");
+            ViewBag.ProductKindsID = new SelectList(db.ProductKinds, "ID", "Name");
             return View();
         }
 
