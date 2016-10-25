@@ -11,7 +11,7 @@ namespace SmartSuper.Models
     {
         public ShoppingCarts()
         {
-            this.Products = new HashSet<Products>();
+            //this.Products = new HashSet<Products>();
         }
 
         public int ID { get; set; }
@@ -20,7 +20,8 @@ namespace SmartSuper.Models
         public bool Paid { get; set; }
 
         public virtual Customers Customer { get; set; }
-        public virtual ICollection<Products> Products { get; set; }
+        //public virtual ICollection<Products> Products { get; set; }
+        public virtual ICollection<ProductsShoppingCarts> ProductsShoppingCarts { get; set; }
 
     }
 }

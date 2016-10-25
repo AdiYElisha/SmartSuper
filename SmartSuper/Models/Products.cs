@@ -10,7 +10,7 @@ namespace SmartSuper.Models
     {
         public Products()
         {
-            this.ShoppingCarts = new HashSet<ShoppingCarts>();
+            //this.ShoppingCarts = new HashSet<ShoppingCarts>();
             this.Supers = new HashSet<Supers>();
         }
         public int ID { get; set; }
@@ -46,7 +46,8 @@ namespace SmartSuper.Models
 
         [Display(Name = "כמות בשביל שהמבצע יהיה תקף")]
         public int Amount_Condition_For_Deal { get; set; }
-        public virtual ICollection<ShoppingCarts> ShoppingCarts { get; set; }
+        //public virtual ICollection<ShoppingCarts> ShoppingCarts { get; set; }
+        public virtual ICollection<ProductsShoppingCarts> ProductsShoppingCarts { get; set; }
         public virtual ICollection<Supers> Supers { get; set; }
 
     }
