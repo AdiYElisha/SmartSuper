@@ -40,8 +40,8 @@
         <input type="text" name="LastName" id="LastName" />
         <label>גיל : </label>
         <span id="min">0</span>
-        <input type="range" min="0" max="@ViewBag.MaxAge" value="@ViewBag.MaxAge" name="Age" id="Age" onchange="showVal(this.value)" />
-        <span id="max">@ViewBag.MaxAge</span>
+        
+        
         <label>עיר : </label>
         @Html.DropDownList("City", ViewBag.City as SelectList, " ")
         <label>מין : </label>
@@ -71,9 +71,6 @@
         </th>
         <th class="tableH">
             @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th class="tableH">
-            @Html.DisplayNameFor(model => model.Age)
         </th>
         <th class="tableH">
             @Html.DisplayNameFor(model => model.City)
@@ -108,9 +105,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>

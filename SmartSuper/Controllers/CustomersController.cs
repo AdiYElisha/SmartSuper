@@ -13,15 +13,11 @@ namespace SmartSuper.Controllers
 {
     public class CustomerController : Controller
     {
-        private SmartSuperContext5 db = new SmartSuperContext5();
+        private SmartSuperContext23 db = new SmartSuperContext23();
 
         // GET: Customer
         public ActionResult Index()
         {
-            if (db.Customer.Count() > 0)
-            {
-                ViewBag.MaxAge = db.Customer.Select(x => x.Age).Max();
-            }
 
             ViewBag.City = new SelectList(db.Customer.Select(x => x.City).Distinct());
 
@@ -34,7 +30,6 @@ namespace SmartSuper.Controllers
         public ActionResult Index(string FirstName, string LastName, int Age, string City, string Gender)
         {
             var Customer = from c in db.Customer select c;
-            Customer = Customer.Where(x => x.Age <= Age);
 
             if (!string.IsNullOrEmpty(FirstName))
             {
@@ -57,7 +52,6 @@ namespace SmartSuper.Controllers
             }
 
             ViewBag.City = new SelectList(db.Customer.Select(x => x.City).Distinct());
-            ViewBag.MaxAge = db.Customer.Select(x => x.Age).Max();
             return View(Customer.ToList());
         }
 
