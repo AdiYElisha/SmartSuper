@@ -21,6 +21,19 @@ namespace SmartSuper.Controllers
             return View(db.Products.ToList());
         }
 
+        [HttpGet]
+        public ActionResult GetListByID(int? ID)
+        {
+            if (ID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var ProductsVar = from a in db.Products select a;
+            ProductsVar = ProductsVar.Where(x => x.ProductType_ID == ID);
+            return View(ProductsVar.ToList());
+        }
+
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {

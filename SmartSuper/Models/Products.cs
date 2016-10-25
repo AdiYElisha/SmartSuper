@@ -23,6 +23,10 @@ namespace SmartSuper.Models
         [Required(ErrorMessage = "שדה חובה")]
         public string FoodCompany_ID { get; set; }
 
+        [Display(Name = "מספר זיהוי של הסופר")]
+        [Required(ErrorMessage = "שדה חובה")]
+        public string Super_ID { get; set; }
+
         [Display(Name = "משקל המוצר")]
         [Required(ErrorMessage = "שדה חובה")]
         public int Weight { get; set; }
