@@ -21,11 +21,11 @@ namespace SmartSuper.Models
 
         [Display(Name = "מספר זיהוי של חברת האוכל")]
         [Required(ErrorMessage = "שדה חובה")]
-        public string FoodCompany_ID { get; set; }
+        public int FoodCompany_ID { get; set; }
 
         [Display(Name = "מספר זיהוי של הסופר")]
         [Required(ErrorMessage = "שדה חובה")]
-        public string Super_ID { get; set; }
+        public int Super_ID { get; set; }
 
         [Display(Name = "משקל המוצר")]
         [Required(ErrorMessage = "שדה חובה")]

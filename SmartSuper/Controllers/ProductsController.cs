@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SmartSuper.DAL;
 using SmartSuper.Models;
+using SmartSuper.ViewModel;
 
 namespace SmartSuper.Controllers
 {
@@ -28,6 +29,17 @@ namespace SmartSuper.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
+            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+            //var Current_ShppingCart_Products = db.ProductsShoppingCarts.Where(s => s.ShoppingCartsID == Customer_ShoppingCart_ID);
+            //System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products;
+
+
+            var Current_ShppingCart_Products = from ProductsShoppingCarts in db.ProductsShoppingCarts
+                                               where ProductsShoppingCarts.ShoppingCartsID == Customer_ShoppingCart_ID
+                                               select new ProductsOfShoppingCartsIDs { ProductsID = ProductsShoppingCarts.ProductsID };
+
+            System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products.ToList();
 
             var ProductsVar = from a in db.Products select a;
             ProductsVar = ProductsVar.Where(x => x.ProductType_ID == ID);
@@ -138,12 +150,16 @@ namespace SmartSuper.Controllers
             base.Dispose(disposing);
         }
 
-        [HttpGet]
+        [HttpPost]
         public JsonResult addProductToCart(int Id)
         {
             int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
-            var Current_ShppingCart_Products = db.ProductsShoppingCarts.Where(s => s.ShoppingCartsID == Customer_ShoppingCart_ID);
-            System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products;
+            //var Current_ShppingCart_Products = db.ProductsShoppingCarts.Where(s => s.ShoppingCartsID == Customer_ShoppingCart_ID);
+            //System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products;
+
+            
+
+
 
             ProductsShoppingCarts productShoppingCarts = new ProductsShoppingCarts();
 
@@ -153,7 +169,8 @@ namespace SmartSuper.Controllers
 
             db.ProductsShoppingCarts.Add(productShoppingCarts);
             db.SaveChanges();
-            return (null);       
+               
+            return Json(true);    
  
         }
 

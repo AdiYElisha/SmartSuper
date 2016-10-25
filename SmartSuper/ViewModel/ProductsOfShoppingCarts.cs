@@ -8,5 +8,6 @@ namespace SmartSuper.ViewModel
     public class ProductsOfShoppingCarts
     {
         public string ProductName { get; set; }
+        public string FoodCompanyName { get; set; }
     }
 }

@@ -32,9 +32,10 @@ namespace SmartSuper.Controllers
 
             var ProductsNames = from ProductsShoppingCart in db.ProductsShoppingCarts
                                 where ProductsShoppingCart.ShoppingCartsID == Customer_ShoppingCart_ID
-                                             join Product in db.Products on ProductsShoppingCart.ProductsID equals Product.ID
-                                             join ProductType in db.ProductTypes on Product.ProductType_ID equals ProductType.ID
-                                             select new ProductsOfShoppingCarts { ProductName = ProductType.Name };
+                                join Product in db.Products on ProductsShoppingCart.ProductsID equals Product.ID
+                                join ProductType in db.ProductTypes on Product.ProductType_ID equals ProductType.ID
+                                join FoodCompany in db.FoodCompanies on Product.FoodCompany_ID equals FoodCompany.Id
+                                select new ProductsOfShoppingCarts { ProductName = ProductType.Name, FoodCompanyName = FoodCompany.Name };
                                         
             return View(ProductsNames.ToList());
         }

@@ -9,26 +9,19 @@
 @section scripts{
 
     <script type="text/javascript">
-
         $(document).ready(function () {
-         $('#Product').autocomplete({
-             source: '@Url.Action("GetProduct")'
-         });
-        });
-
-        $(document).ready(function () {
-            $(".addProdrctToCart").click(function () {
+            $(".addProductToCart").click(function () {
                 var button = $(this);
 
                 $.ajax({
-                    url: '/Products/addProdrctToCart',
+                    url: '/Products/addProductToCart',
                     type: 'Post',
                     dataType: 'Json',
-                    data: { albumId: $(this).parent().attr("id") },
+                    data: { Id: $(this).parent().attr("id") },
                     success: (function (result) {
 
                         $(button).text("נוסף לסל");
-                        $(button).removeClass("addProdrctToCart");
+                        $(button).removeClass("addProductToCart");
                         $(button).addClass("inCart");
                         $(button).attr("disabled", "disabled");
                     }),
@@ -91,7 +84,7 @@
         <th></th>
     </tr>
 
-@{var Current_ShppingCart_Products = (List<SmartSuper.Models.ProductsShoppingCarts>)System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"];}
+@{var Current_ShppingCart_Products = (List<SmartSuper.ViewModel.ProductsOfShoppingCartsIDs>)System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"];}
 
 @foreach (var item in Model)
 {
@@ -121,16 +114,26 @@
             @Html.DisplayFor(modelItem => item.Amount_Condition_For_Deal)
         </td>
         <td>
+            @{ bool IsProductIDInsideList = false;}
+            <div id=@item.ID class="Products-details" style="text-align:center; font-weight:bold">
 
-            @if (true)
-            {
-                <button type="button" disabled="disabled" class="inCart" id="inCart">נוסף לסל</button>
-            }
-            else
-            {
-                <button type="button" class="addProdrctToCart" id="addProdrctToCart">הוספה לסל</button>
-            }
-        </td>
+                @foreach (SmartSuper.ViewModel.ProductsOfShoppingCartsIDs item2 in Current_ShppingCart_Products)
+                {
+                    if (item2.ProductsID == item.ID)
+                    {
+                        IsProductIDInsideList = true;
+                    }
+                }
+                @if (IsProductIDInsideList == true)
+                {
+                    <button type="button" disabled="disabled" class="inCart" id="inCart">נוסף לסל</button>
+                }
+                else
+                {
+                    <button type="button" class="addProductToCart" id="addProductToCart">הוספה לסל</button>
+                }
+            </div>
+</td>
         <br />
 
         <td>
