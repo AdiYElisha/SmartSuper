@@ -108,6 +108,22 @@ namespace SmartSuper.Controllers
             return View(shoppingCarts);
         }
 
+        public ActionResult Orders(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Shows the all the customers who paid for shopping carts, and how much they paid.
+            var All_Orders = from shoppingcarts in db.ShoppingCarts
+                             where shoppingcarts.Paid == true
+                             join customers in db.Customer on shoppingcarts.CustomerID equals customers.ID
+                             select new PaidOrders {Customer_Name = customers.FirstName + customers.LastName, Amount_Paid = shoppingcarts.TotalPricePaid, customer_ID = shoppingcarts.CustomerID };
+
+            return View(All_Orders.ToList());
+        }
+
         public ActionResult AmountUp(int id)
         {
             int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
