@@ -2,29 +2,30 @@
     ViewBag.Title = "Home Page";
 }
 
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 
-<script>
-    $(function () {
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+ <body background="~/Picture/PageBackground.jpg">
+     <script>
+          $(function () {
 
-        var canvas = document.getElementById('welcome-canvas');
-        var ctx = canvas.getContext("2d");
-        var start;
+              var canvas = document.getElementById('welcome-canvas');
+              var ctx = canvas.getContext("2d");
+              var start;
 
-        var img = $("<img>").on("load", function() {
-            start = Date.now();
-            draw();
-        }).attr("src", "../../Picture/productall.png").get(0);
+              var img = $("<img>").on("load", function () {
+                  start = Date.now();
+                  draw();
+              }).attr("src", "../../Picture/productall.png").get(0);
 
-        function draw() {
-            var part = (Date.now() - start) / 10 % img.width;
-            ctx.drawImage(img, part, 35,img.width, 430);
-            ctx.drawImage(img, part - img.width, 35, img.width, 430);
-            webkitRequestAnimationFrame(draw, canvas);
-        };
-    })
+              function draw() {
+                  var part = (Date.now() - start) / 10 % img.width;
+                  ctx.drawImage(img, part, 35, img.width, 430);
+                  ctx.drawImage(img, part - img.width, 35, img.width, 430);
+                  webkitRequestAnimationFrame(draw, canvas);
+              };
+          })
 
-</script>
+      </script> 
 
 <iframe scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:100px;height:100px;" src="http://www.clocklink.com/html5embed.php?clock=005&timezone=ACST&color=red&size=100&Title=&Message=&Target=&From=2016,1,1,0,0,0&Color=red"></iframe>
 
