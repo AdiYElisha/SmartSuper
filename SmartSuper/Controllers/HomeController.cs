@@ -23,5 +23,10 @@ namespace SmartSuper.Controllers
         {
             return View();
         }
+
+        public ActionResult SmartSuperCommercial()
+        {
+            return View();
+        }
     }
 }
