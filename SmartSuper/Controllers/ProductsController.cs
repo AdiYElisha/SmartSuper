@@ -19,7 +19,15 @@ namespace SmartSuper.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            return View(db.Products.ToList());
+            var Products_By_TypeID_By_lowest_Price = from products in db.Products
+                                                     join producttypes in db.ProductTypes on products.ProductType_ID equals producttypes.ID
+                                                     join foodcompanies in db.FoodCompanies on products.FoodCompany_ID equals foodcompanies.Id
+                                                     join superbyproducts in db.SupersProducts on products.ID equals superbyproducts.ProductsID
+                                                     join supers in db.Supers on superbyproducts.SupersID equals supers.ID
+                                                     select new ProductsBySupers { ProductID = products.ID, ProductName = producttypes.Name, FoodCompanyName = foodcompanies.Name, Price = superbyproducts.Price, SuperName = supers.Name};
+
+            Products_By_TypeID_By_lowest_Price = Products_By_TypeID_By_lowest_Price.OrderBy(x => x.ProductID).ThenBy(x => x.FoodCompanyName).ThenBy(x => x.Price);
+            return View(Products_By_TypeID_By_lowest_Price.ToList());
         }
 
         [HttpGet]
@@ -214,7 +222,7 @@ namespace SmartSuper.Controllers
 
             productShoppingCarts.ProductsID = Id;
             productShoppingCarts.ShoppingCartsID = Customer_ShoppingCart_ID;
-            //productShoppingCarts.amount
+            productShoppingCarts.amount = 1;
 
             db.ProductsShoppingCarts.Add(productShoppingCarts);
             db.SaveChanges();

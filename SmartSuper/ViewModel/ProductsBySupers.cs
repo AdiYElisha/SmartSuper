@@ -19,5 +19,8 @@ namespace SmartSuper.ViewModel
         public float Price { get; set; }
         [Display(Name = "כמות")]
         public int Amount { get; set; }
+
+        [Display(Name = "שם הסופר")]
+        public string SuperName { get; set; }
     }
 }
