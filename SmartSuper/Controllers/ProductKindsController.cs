@@ -15,7 +15,7 @@ namespace SmartSuper.Controllers
 {
     public class ProductKindsController : Controller
     {
-        private SmartSuperContext23 db = new SmartSuperContext23();
+        private SmartSuperContext db = new SmartSuperContext();
 
         // GET: ProductKinds
         public ActionResult Index()
