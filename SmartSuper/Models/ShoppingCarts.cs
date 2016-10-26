@@ -19,10 +19,15 @@ namespace SmartSuper.Models
         [DefaultValue("false")]
         public bool Paid { get; set; }
 
-        public virtual Customers Customer { get; set; }
+        //public virtual Customers Customer { get; set; }
 
         //public virtual ICollection<Products> Products { get; set; }
         public virtual ICollection<ProductsShoppingCarts> ProductsShoppingCarts { get; set; }
 
+        [Display(Name = "מספר המזהה של הלקוח ששילם")]
+        public int CustomerID { get; set; }
+        [Display(Name = "מחיר ששולם")]
+        [DefaultValue(0)]
+        public float TotalPricePaid { get; set; }
     }
 }

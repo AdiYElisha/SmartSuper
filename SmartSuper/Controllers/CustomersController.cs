@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SmartSuper.Models;
 using SmartSuper.DAL;
+using SmartSuper.ViewModel;
 
 namespace SmartSuper.Controllers
 {
@@ -56,14 +57,34 @@ namespace SmartSuper.Controllers
         }
 
         // GET: Customer/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Customers customer = db.Customer.Find(id);
+
+            var Customer_Count_Of_Shopping_Carts = from shoppingcarts in db.ShoppingCarts
+                                                     where shoppingcarts.CustomerID == id
+                                                     group shoppingcarts by shoppingcarts.CustomerID into result
+                                                     select new Customer_Shoppingcart_Stats
+                                                     {
+                                                         Customer_ID = result.Key,
+                                                         Count = result.Count()
+                                                     };
+            Customer_Shoppingcart_Stats CountOfShoppingCarts;
+            if (!Customer_Count_Of_Shopping_Carts.Any())
+            {
+                CountOfShoppingCarts = new Customer_Shoppingcart_Stats { Customer_ID = id, Count = 0 };
+            }
+            else
+            {
+                CountOfShoppingCarts = Customer_Count_Of_Shopping_Carts.First();
+            }
             
+            System.Web.HttpContext.Current.Session["CountOfShoppingCarts"] = CountOfShoppingCarts;
+
             if (customer == null)
             {
                 return HttpNotFound();
@@ -94,6 +115,7 @@ namespace SmartSuper.Controllers
                 {
                     // Creating a new shopping cart
                     ShoppingCarts Customer_New_Shopping_Cart = new ShoppingCarts();
+                    Customer_New_Shopping_Cart.CustomerID = 111;
                     db.ShoppingCarts.Add(Customer_New_Shopping_Cart);
                     db.SaveChanges();
                     int Current_ShoppingCard_ID = db.ShoppingCarts
@@ -158,6 +180,7 @@ namespace SmartSuper.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Customers customer = db.Customer.Find(id);
+
             if (customer == null)
             {
                 return HttpNotFound();
