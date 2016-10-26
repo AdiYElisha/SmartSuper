@@ -94,7 +94,6 @@
                 </td>
                 <td>
                     @{ bool IsProductIDInsideList = false;}
-                    @{ float lowest_price_for_product_id = 9999;}
                     <div id=@item.ProductID class="Products-details" style="text-align:center; font-weight:bold">
 
                         @foreach (SmartSuper.ViewModel.ProductsOfShoppingCartsIDs item2 in Current_ShppingCart_Products)
@@ -115,7 +114,6 @@
                         }
                     </div>
                 </td>
-                <br />
 
                 <td>
                     @if (user != null && user.FirstName == "admin")

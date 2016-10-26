@@ -17,5 +17,7 @@ namespace SmartSuper.ViewModel
 
         [Display(Name = "המחיר הזול ביותר")]
         public float Price { get; set; }
+        [Display(Name = "כמות")]
+        public int Amount { get; set; }
     }
 }

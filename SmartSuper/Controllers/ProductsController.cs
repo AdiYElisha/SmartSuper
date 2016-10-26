@@ -34,13 +34,6 @@ namespace SmartSuper.Controllers
             //var Current_ShppingCart_Products = db.ProductsShoppingCarts.Where(s => s.ShoppingCartsID == Customer_ShoppingCart_ID);
             //System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products;
 
-            var TEST = from products in db.Products
-                       where products.ProductType_ID == ID
-                       group products by products.FoodCompany_ID into result
-                       select result;
-
-
-
 
 
             // Select Product_ID, ProductType_Name, FoodCompany_Name, LowestPrice from all supers
@@ -49,8 +42,6 @@ namespace SmartSuper.Controllers
                                                      join producttypes in db.ProductTypes on products.ProductType_ID equals producttypes.ID
                                                      join foodcompanies in db.FoodCompanies on products.FoodCompany_ID equals foodcompanies.Id
                                                      join superbyproducts in db.SupersProducts on products.ID equals superbyproducts.ProductsID
-                                                     //group new ProductsBySupers { ProductID = products.ID, ProductName = producttypes.Name, FoodCompanyName = foodcompanies.Name, Price = superbyproducts.Price }
-                                                     //by products.ID into results
                                                      select new ProductsBySupers { ProductID = products.ID, ProductName = producttypes.Name, FoodCompanyName = foodcompanies.Name, Price = superbyproducts.Price };
 
             var Products_By_TypeID_By_lowest_Price2 = from products in db.Products

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SmartSuper.ViewModel.ProductsOfShoppingCarts>
+﻿@model IEnumerable<SmartSuper.ViewModel.ProductsBySupers>
 
 @{
     ViewBag.Title = "Index";
@@ -10,31 +10,65 @@
 <table class="table">
     <tr>
         <th>
-            
+            @Html.DisplayNameFor(model => model.ProductName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FoodCompanyName)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            סכום
+        </th>
+
+
         <th></th>
     </tr>
+    @{float TOTAL_SUM = 0;}
+    @{var Products_By_Prices = (float[])System.Web.HttpContext.Current.Session["Products_By_Prices"]; }
+    @foreach (var item in Model)
+    {
+        if (Products_By_Prices[item.ProductID] == item.Price)
+        {
+            float CURRENT_SUM = item.Price * item.Amount;
+            TOTAL_SUM += item.Price * item.Amount;
+            <tr class="tableRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FoodCompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.ActionLink("-", "AmountDown", new { id = item.ProductID})
+                    @Html.DisplayFor(modelItem => item.Amount)
+                    @Html.ActionLink("+", "AmountUp", new { id = item.ProductID })
+                </td>
+                <td>
+                    @CURRENT_SUM
+                </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FoodCompanyName)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.ProductName })
-        </td>
-    </tr>
-}
+                <td>
+                    <div id=@item.ProductID class="Products-details" style="text-align:center; font-weight:bold">
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductName })
+                </td>   
+            </tr>
+        }
+    }
 
 </table>
+<br />
+<h1>הסכום הינו: @TOTAL_SUM</h1>
 
 
 <p>
-    @Html.ActionLink("רכישת המוצרים", "Create")
+    @Html.ActionLink("רכישת המוצרים", "BuyCart")
 </p>

@@ -364,6 +364,7 @@
     <Content Include="Views\ShoppingCarts\Details.cshtml" />
     <Content Include="Views\ShoppingCarts\Edit.cshtml" />
     <Content Include="Views\ShoppingCarts\Index.cshtml" />
+    <Content Include="Views\ShoppingCarts\Index  backup.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

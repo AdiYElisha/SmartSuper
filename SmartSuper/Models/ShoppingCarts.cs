@@ -20,6 +20,7 @@ namespace SmartSuper.Models
         public bool Paid { get; set; }
 
         public virtual Customers Customer { get; set; }
+
         //public virtual ICollection<Products> Products { get; set; }
         public virtual ICollection<ProductsShoppingCarts> ProductsShoppingCarts { get; set; }
 

@@ -19,16 +19,8 @@ namespace SmartSuper.Controllers
         // GET: ShoppingCarts
         public ActionResult Index()
         {
-            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
-
-            // Selecting all the products in our shopping carts
-
-            //var ProductsShoppingCarts = from a in db.ProductsShoppingCarts select a;
-            //ProductsShoppingCarts = ProductsShoppingCarts.Where(x => x.ShoppingCartsID == Customer_ShoppingCart_ID);
-
-            // Translating all the products_IDs to Products_names
-
-            //var Products = from a in db.ProductsShoppingCarts join ProductsShoppingCarts select a;
+            // this works
+            /*int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
 
             var ProductsNames = from ProductsShoppingCart in db.ProductsShoppingCarts
                                 where ProductsShoppingCart.ShoppingCartsID == Customer_ShoppingCart_ID
@@ -40,6 +32,65 @@ namespace SmartSuper.Controllers
                                 select new ProductsOfShoppingCarts { ProductName = ProductType.Name , FoodCompanyName = FoodCompany.Name };
                                         
             return View(ProductsNames.ToList());
+            */
+
+
+            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+
+
+            // Select Product_ID, ProductType_Name, FoodCompany_Name, LowestPrice from all supers
+            /*
+            var Products_By_TypeID_By_lowest_Price = from ProductsShoppingCart in db.ProductsShoppingCarts
+                                                     where ProductsShoppingCart.ShoppingCartsID == Customer_ShoppingCart_ID
+                                                     join Product in db.Products on ProductsShoppingCart.ProductsID equals Product.ID
+                                                     join ProductType in db.ProductTypes on Product.ProductType_ID equals ProductType.ID
+                                                     join FoodCompany in db.FoodCompanies on Product.FoodCompany_ID equals FoodCompany.Id
+                                                     join superbyproducts in db.SupersProducts on Product.ID equals superbyproducts.ProductsID
+                                                     select new ProductsBySupers { ProductID = ProductsShoppingCart.ProductsID, ProductName = ProductType.Name, FoodCompanyName = FoodCompany.Name, Price = superbyproducts.Price};
+            */
+
+            var Products_By_TypeID_By_lowest_Price = from productsshoppingcart in db.ProductsShoppingCarts
+                                                     where productsshoppingcart.ShoppingCartsID == Customer_ShoppingCart_ID
+                                                     join products in db.Products on productsshoppingcart.ProductsID equals products.ID
+                                                     join producttypes in db.ProductTypes on products.ProductType_ID equals producttypes.ID
+                                                     join foodcompanies in db.FoodCompanies on products.FoodCompany_ID equals foodcompanies.Id
+                                                     join superbyproducts in db.SupersProducts on products.ID equals superbyproducts.ProductsID
+                                                     select new ProductsBySupers { ProductID = products.ID, ProductName = producttypes.Name, FoodCompanyName = foodcompanies.Name, Price = superbyproducts.Price, Amount = productsshoppingcart.amount };
+            
+
+            float[] products_by_prices = new float[5000];
+
+            foreach (var item in Products_By_TypeID_By_lowest_Price)
+            {
+                if (products_by_prices[item.ProductID] == 0)
+                {
+                    products_by_prices[item.ProductID] = item.Price;
+                }
+                else
+                {
+                    if (products_by_prices[item.ProductID] > item.Price)
+                    {
+                        products_by_prices[item.ProductID] = item.Price;
+                    }
+                }
+            }
+
+            System.Web.HttpContext.Current.Session["Products_By_Prices"] = products_by_prices;
+
+
+            //don't think I need it
+            /*
+                // Selects the shoppingCart Products I have to make the button active or deactive
+                var Current_ShppingCart_Products = from ProductsShoppingCarts in db.ProductsShoppingCarts
+                                                   where ProductsShoppingCarts.ShoppingCartsID == Customer_ShoppingCart_ID
+                                                   select new ProductsOfShoppingCartsIDs { ProductsID = ProductsShoppingCarts.ProductsID };
+
+                //Trying
+                System.Web.HttpContext.Current.Session["Current_ShppingCart_Products"] = Current_ShppingCart_Products.ToList();
+            */
+            // Picks the lowest price product
+
+            return View(Products_By_TypeID_By_lowest_Price.ToList());
         }
 
         // GET: ShoppingCarts/Details/5
@@ -55,6 +106,53 @@ namespace SmartSuper.Controllers
                 return HttpNotFound();
             }
             return View(shoppingCarts);
+        }
+
+        public ActionResult AmountUp(int id)
+        {
+            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+            var Current_product_shoppingcart = db.ProductsShoppingCarts.Where(z => z.ProductsID == id & z.ShoppingCartsID == Customer_ShoppingCart_ID).ToList().LastOrDefault();
+            Current_product_shoppingcart.amount++;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+        public ActionResult AmountDown(int id)
+        {
+            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+            var Current_product_shoppingcart = db.ProductsShoppingCarts.Where(z => z.ProductsID == id & z.ShoppingCartsID == Customer_ShoppingCart_ID).ToList().LastOrDefault();
+            Current_product_shoppingcart.amount--;
+            if (Current_product_shoppingcart.amount == 0)
+            {
+                db.ProductsShoppingCarts.Remove(Current_product_shoppingcart);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult BuyCart()
+        {
+            int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
+            var Current_ShoppingCart = db.ShoppingCarts.Find(Customer_ShoppingCart_ID);
+            
+            // Here, the customers pay money with credit card
+            Current_ShoppingCart.Paid = true;
+            db.SaveChanges();
+
+            // Creating a new shopping cart
+            ShoppingCarts Customer_New_Shopping_Cart = new ShoppingCarts();
+            db.ShoppingCarts.Add(Customer_New_Shopping_Cart);
+            db.SaveChanges();
+            int Current_ShoppingCard_ID = db.ShoppingCarts
+                                                 .OrderByDescending(p => p.ID)
+                                                 .FirstOrDefault().ID;
+            // updating the Customer's shopping cart
+            int Current_Customer_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).ID;
+            var current_customer = db.Customer.Find(Current_Customer_ID);
+            current_customer.Current_Shoppingcart_ID = Current_ShoppingCard_ID;
+            db.SaveChanges();
+            System.Web.HttpContext.Current.Session["user"] = current_customer;
+            return RedirectToAction("Index");
+
         }
 
         // GET: ShoppingCarts/Create
