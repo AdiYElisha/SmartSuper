@@ -8,6 +8,7 @@ namespace SmartSuper.ViewModel
 {
     public class ProductsBySupers
     {
+        [Display(Name = "מספר זיהוי המוצר")]
         public int ProductID { get; set; }
         [Display(Name = "שם המוצר")]
         public string ProductName { get; set; }

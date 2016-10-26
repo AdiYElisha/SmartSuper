@@ -8,6 +8,7 @@ namespace SmartSuper.ViewModel
 {
     public class Customer_Shoppingcart_Stats
     {
+        [Display(Name = "מספר זיהוי הלקוח")]
         public int Customer_ID { get; set; }
 
         [Display(Name = "כמות הסלים שנקנו")]
