@@ -204,7 +204,7 @@
     <Compile Include="Controllers\ProductTypesController.cs" />
     <Compile Include="Controllers\ShoppingCartsController.cs" />
     <Compile Include="Controllers\SupersController.cs" />
-    <Compile Include="DAL\SmartSuperContext23.cs" />
+    <Compile Include="DAL\SmartSuperContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -227,9 +227,13 @@
     <Compile Include="ViewModel\ProductsOfShoppingCarts.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SmartSuperContext.mdf" />
     <Content Include="App_Data\SmartSuperContext23.mdf" />
     <Content Include="App_Data\SmartSuperContext23_log.ldf">
       <DependentUpon>SmartSuperContext23.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\SmartSuperContext_log.ldf">
+      <DependentUpon>SmartSuperContext.mdf</DependentUpon>
     </Content>
     <Content Include="Clip\SmartSuperMarket.mp4" />
     <Content Include="Content\bootstrap.css" />
@@ -287,6 +291,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Picture\Background.jpg" />
     <Content Include="Picture\cheecs.jpg" />
+    <Content Include="Picture\Clear.jpg" />
     <Content Include="Picture\fruit.jpg" />
     <Content Include="Picture\meat.jpg" />
     <Content Include="Picture\no_picture_to_show.jpg" />
