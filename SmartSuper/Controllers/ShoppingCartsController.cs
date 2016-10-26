@@ -108,13 +108,8 @@ namespace SmartSuper.Controllers
             return View(shoppingCarts);
         }
 
-        public ActionResult Orders(int? id)
+        public ActionResult Orders()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
             // Shows the all the customers who paid for shopping carts, and how much they paid.
             var All_Orders = from shoppingcarts in db.ShoppingCarts
                              where shoppingcarts.Paid == true
