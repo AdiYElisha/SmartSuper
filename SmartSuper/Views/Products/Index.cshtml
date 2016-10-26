@@ -1,26 +1,20 @@
 ﻿@model IEnumerable<SmartSuper.ViewModel.ProductsBySupers>
 
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-
+<h2>כלל המוצרים בכלל הרשתות</h2>
 
 <table class="table">
     <tr>
-        <th>
+        <th class="tableH">
             @Html.DisplayNameFor(model => model.ProductName)
         </th>
-        <th>
+        <th class="tableH">
             @Html.DisplayNameFor(model => model.FoodCompanyName)
         </th>
-        <th>
+        <th class="tableH">
             @Html.DisplayNameFor(model => model.Price)
         </th>
-        <th>
+        <th class="tableH">
             @Html.DisplayNameFor(model => model.SuperName)
         </th>
         <th></th>
