@@ -47,7 +47,7 @@
                     @Html.DisplayFor(modelItem => item.Price)
                 </td>
                 <td>
-                    @Html.ActionLink("-", "AmountDown", new { id = item.ProductID})
+                    @Html.ActionLink("-", "AmountDown", new { id = item.ProductID })
                     @Html.DisplayFor(modelItem => item.Amount)
                     @Html.ActionLink("+", "AmountUp", new { id = item.ProductID })
                 </td>
@@ -63,6 +63,10 @@
 <h1>הסכום הינו: @TOTAL_SUM</h1>
 
 
-<p>
-    @Html.ActionLink("רכישת המוצרים", "BuyCart", new {id = TOTAL_SUM })
-</p>
+@{ if ((TOTAL_SUM > 0))
+    {
+        <p>
+            @Html.ActionLink("רכישת המוצרים", "BuyCart", new { id = TOTAL_SUM })
+        </p>
+        }
+    }
