@@ -142,7 +142,7 @@ ul#menu li a:hover {
     font-size:small;
 }
 
-/* album views */
+/* super views */
 .addToCart {
     background-color: #E8E8E8;
     color: black;
@@ -156,7 +156,7 @@ ul#menu li a:hover {
     cursor: auto;
 }
 
-.album-cell {
+.super-cell {
     float: right;
     padding: 15px;
 }
@@ -173,7 +173,7 @@ ul#menu li a:hover {
 	display: table;
 }
 
-#albums-main {
+#supers-main {
 		display: table-cell;
 	}
 

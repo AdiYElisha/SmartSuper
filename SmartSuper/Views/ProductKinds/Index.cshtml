@@ -39,11 +39,11 @@
 }
 
 <div id="content">
-    <div id="albums-main">
+    <div id="supers-main">
         @foreach (var item in Model)
         {
-            <section class="album-cell">
-                <div class="album-header" style="text-align:center; font-weight:bold">
+            <section class="super-cell">
+                <div class="super-header" style="text-align:center; font-weight:bold">
                     <label>@item.Name</label>
                 </div>
                 @Html.ActionLink(" ", "GetListByID", "ProductTypes", new { id = @item.ID }, new
@@ -51,7 +51,7 @@
                style = "background: url('" + item.PictuerLocation + "') no-repeat center right; display:block; height:300px; width:340px;"
            })
 
-                <div id=@item.ID class="album-details" style="text-align:center; font-weight:bold">
+                <div id=@item.ID class="super-details" style="text-align:center; font-weight:bold">
                     <br />
                     @if (user != null && user.FirstName == "admin")
                     {
