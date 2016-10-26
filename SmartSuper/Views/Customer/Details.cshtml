@@ -6,7 +6,7 @@
 
 <h2>פרטי חשבון</h2>
 
-
+@{var Customer_Count_Of_Shopping_Carts = (SmartSuper.ViewModel.Customer_Shoppingcart_Stats)System.Web.HttpContext.Current.Session["CountOfShoppingCarts"];}
 <fieldset style="margin-left:150px">
     <div>
         <hr />
@@ -62,6 +62,13 @@
                 {
                     <label style="font-weight:bold">@Html.DisplayNameFor(model => model.PhoneNumber):</label>
                     @Html.DisplayFor(model => model.PhoneNumber)
+                }
+            </div>
+            <div>
+                @if (Model.PhoneNumber != null)
+                {
+                    <label style="font-weight:bold">כמות העגלות שנקנו</label>
+                    @Customer_Count_Of_Shopping_Carts.Count
                 }
             </div>
 

@@ -129,13 +129,18 @@ namespace SmartSuper.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public ActionResult BuyCart()
+
+        // the ID is actually total to pay
+        public ActionResult BuyCart(int ID)
         {
+            int Current_Customer_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).ID;
             int Customer_ShoppingCart_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).Current_Shoppingcart_ID;
             var Current_ShoppingCart = db.ShoppingCarts.Find(Customer_ShoppingCart_ID);
             
             // Here, the customers pay money with credit card
             Current_ShoppingCart.Paid = true;
+            Current_ShoppingCart.CustomerID = Current_Customer_ID;
+            Current_ShoppingCart.TotalPricePaid = ID;
             db.SaveChanges();
 
             // Creating a new shopping cart
@@ -146,7 +151,7 @@ namespace SmartSuper.Controllers
                                                  .OrderByDescending(p => p.ID)
                                                  .FirstOrDefault().ID;
             // updating the Customer's shopping cart
-            int Current_Customer_ID = ((SmartSuper.Models.Customers)System.Web.HttpContext.Current.Session["user"]).ID;
+            
             var current_customer = db.Customer.Find(Current_Customer_ID);
             current_customer.Current_Shoppingcart_ID = Current_ShoppingCard_ID;
             db.SaveChanges();
