@@ -215,13 +215,6 @@ fieldset {
     padding: 0;
 }
 
-/* home */
-#songsLyrics {
-    -webkit-column-count: 3; /* Chrome, Safari, Opera */
-    -moz-column-count: 3; /* Firefox */
-    column-count: 3;
-}
-
 #about, #contact {
     border: 2px solid #a1a1a1;
     padding: 10px 40px;
